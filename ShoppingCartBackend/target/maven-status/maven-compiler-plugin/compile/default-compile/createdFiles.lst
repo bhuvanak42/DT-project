@@ -1,0 +1,4 @@
+com\niit\shoppingcartbackend\model\Product.class
+com\niit\shoppingcartbackend\model\Category.class
+com\niit\shoppingcartbackend\model\UserDetails.class
+com\niit\shoppingcartbackend\model\Supplier.class

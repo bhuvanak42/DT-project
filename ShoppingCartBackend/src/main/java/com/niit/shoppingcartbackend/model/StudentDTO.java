@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class Supplier {
+public class StudentDTO {
 	private String id;
 	private String name;
-	private String address;
+	private String grade;
 
 	public String getId() {
 		return id;
@@ -29,12 +29,19 @@ public class Supplier {
 		this.name = name;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getGrade() {
+		return grade;
 	}
 
-	public void setAddress(String address) {
-		this.address= address;
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("\nStudent Id : " + this.id);
+		buffer.append("\nStudent Name : " + this.name);
+		buffer.append("\nStudent Grade : " + this.grade);
+		return buffer.toString();
+	}
 }

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class Supplier {
+public class Product {
 	private String id;
 	private String name;
-	private String address;
+	private int price;
 
 	public String getId() {
 		return id;
@@ -29,12 +29,11 @@ public class Supplier {
 		this.name = name;
 	}
 
-	public String getAddress() {
-		return address;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setAddress(String address) {
-		this.address= address;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-
 }

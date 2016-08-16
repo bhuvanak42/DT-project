@@ -1,30 +1,31 @@
 package com.niit.shoppingcartbackend.dao;
 
 import java.util.List;
+
 import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.niit.shoppingcartbackend.model.Supplier;
-
-@Repository("supplierDAO")
-public class SupplierDAOImpl implements SupplierDAO {
+import com.niit.shoppingcartbackend.model.Product;
+@Repository("productDAO")
+public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	
-	public SupplierDAOImpl(SessionFactory sessionFactory) {
+	public ProductDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	@Transactional
-	public boolean save(Supplier supplier) {
+	public boolean save(Product product) {
 		try {
-			sessionFactory.getCurrentSession().save(supplier);
+			sessionFactory.getCurrentSession().save(product);
 			return true;
 		}
 
@@ -36,9 +37,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	@Transactional
-	public boolean delete(Supplier supplier) {
+	public boolean delete(Product product) {
 		try {
-			sessionFactory.getCurrentSession().delete(supplier);
+			sessionFactory.getCurrentSession().delete(product);
 			return true;
 		}
 
@@ -50,9 +51,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	@Transactional
-	public boolean update(Supplier supplier) {
+	public boolean update(Product product) {
 		try {
-			sessionFactory.getCurrentSession().update(supplier);
+			sessionFactory.getCurrentSession().update(product);
 			return true;
 		}
 
@@ -64,11 +65,11 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	@Transactional
-	public Supplier  get(String id) {
-		String hql = " from Supplier where id = " + "'" + id + "'";
+	public Product get(String id) {
+		String hql = " from Product where id = " + "'" + id + "'";
 
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<Supplier> list = query.list();
+		List<Product> list = query.list();
 
 		if (list == null) {
 			return null;
@@ -78,8 +79,8 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	@Transactional
-	public List<Supplier> list() {
-		String hql = " from Supplier ";
+	public List<Product> list() {
+		String hql = " from Product ";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}

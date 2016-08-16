@@ -8,9 +8,12 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class Supplier {
+public class UserDetails {
 	private String id;
 	private String name;
+	private String password;
+	private String mail;
+	private String contact;
 	private String address;
 
 	public String getId() {
@@ -29,12 +32,36 @@ public class Supplier {
 		this.name = name;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
-		this.address= address;
+		this.address = address;
 	}
 
 }

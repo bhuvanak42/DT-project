@@ -15,7 +15,10 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.shoppingcartbackend.model.Category;
+import com.niit.shoppingcartbackend.model.Product;
+import com.niit.shoppingcartbackend.model.StudentDTO;
 import com.niit.shoppingcartbackend.model.Supplier;
+import com.niit.shoppingcartbackend.model.UserDetails;
 
 @Configuration
 @ComponentScan("com.niit.shoppingcartbackend")
@@ -46,8 +49,13 @@ public class ApplicationContextConfiguration {
         LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(
                 dataSource);
         sessionBuilder.addProperties(getHibernateProperties());
-        sessionBuilder.addAnnotatedClasses(Category.class);
+      /*  sessionBuilder.addAnnotatedClasses(Category.class);
         sessionBuilder.addAnnotatedClasses(Supplier.class);
+        sessionBuilder.addAnnotatedClasses(Product.class);       
+        sessionBuilder.addAnnotatedClasses(StudentDTO.class);
+        */
+        sessionBuilder.addAnnotatedClasses(UserDetails.class); 
+        
         return sessionBuilder.buildSessionFactory();
     }
 	
@@ -57,6 +65,7 @@ public class ApplicationContextConfiguration {
             SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager(
                 sessionFactory);
+        
         return transactionManager;
     }
 	
