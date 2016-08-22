@@ -16,10 +16,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.shopingcart.dao.CategoryDAO;
 import com.niit.shopingcart.dao.CategoryDAOImpl;
+import com.niit.shopingcart.dao.ProductDAO;
+import com.niit.shopingcart.dao.ProductDAOImpl;
 import com.niit.shopingcart.dao.SupplierDAO;
 import com.niit.shopingcart.dao.SupplierDAOImpl;
+import com.niit.shopingcart.dao.UserDetailsDAO;
+import com.niit.shopingcart.dao.UserDetailsDAOImpl;
 import com.niit.shopingcart.model.Category;
+import com.niit.shopingcart.model.Product;
 import com.niit.shopingcart.model.Supplier;
+import com.niit.shopingcart.model.UserDetails;
 
 @Configuration
 @ComponentScan("com.niit.shopingcart")
@@ -53,7 +59,9 @@ public class ApplicationContextConfig {
 		sessionBuilder.addProperties(getHibernateProperties());
 
 		sessionBuilder.addAnnotatedClasses(Category.class);
+		sessionBuilder.addAnnotatedClasses(Product.class);
 		sessionBuilder.addAnnotatedClasses(Supplier.class);
+		sessionBuilder.addAnnotatedClasses(UserDetails.class);
 
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -62,12 +70,13 @@ public class ApplicationContextConfig {
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+		
 		return transactionManager;
 	}
 
 	@Autowired
 	@Bean(name = "categoryDao")
-	public CategoryDAO getCategoryDao(SessionFactory sessionFactory) {
+	public CategoryDAO getCategoryDao(SessionFactory sessionFactory) {		
 		return new CategoryDAOImpl(sessionFactory);
 	}
 
@@ -77,4 +86,15 @@ public class ApplicationContextConfig {
 		return new SupplierDAOImpl(sessionFactory);
 	}
 
+	@Autowired
+	@Bean(name = "productDao")
+	public ProductDAO getProductDao(SessionFactory sessionFactory) {
+		return new ProductDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "userDetailsDao")
+	public UserDetailsDAO getUserDetailsDao(SessionFactory sessionFactory) {
+		return new UserDetailsDAOImpl(sessionFactory);
+	}
 }

@@ -10,7 +10,7 @@ public interface ProductDAO {
 
 	public boolean update(Product product);
 
-	public void saveOrUpdate(Product product);
+	public boolean saveOrUpdate(Product product);
 
 	public boolean delete(String id);
 

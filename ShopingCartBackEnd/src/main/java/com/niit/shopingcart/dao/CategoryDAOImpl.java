@@ -6,6 +6,8 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +21,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	private SessionFactory sessionFactory;
 
 	public CategoryDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+		this.sessionFactory = sessionFactory;		
 	}
 
 	@Transactional
@@ -37,14 +39,15 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Transactional
-	public void saveOrUpdate(Category category) {
+	public boolean saveOrUpdate(Category category) {
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(category);
 			sessionFactory.getCurrentSession().flush();
+			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Category update was unsuccessfull in impl");
+			return false;
 		}
 	}
 
@@ -52,13 +55,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public boolean update(Category category) {
 		try {
 			sessionFactory.getCurrentSession().update(category);
-			System.out.println("Inside try");
-			// put transaction commit codes
 			sessionFactory.getCurrentSession().flush();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Inside catch");
 			return false;
 		}
 	}
@@ -73,7 +73,6 @@ public class CategoryDAOImpl implements CategoryDAO {
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Category delete was unsuccessfull in impl");
 			e.printStackTrace();
 			return false;
 		}
@@ -81,7 +80,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Transactional
 	public Category get(String id) {
+
+
 		String hql = "from Category where id='" + id + "'";
+
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		@SuppressWarnings("unchecked")
@@ -96,10 +98,13 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Transactional
 	public List<Category> list() {
-		@SuppressWarnings("unchecked")
-		List<Category> listCategory = (List<Category>) sessionFactory.getCurrentSession().createCriteria(Category.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
-		return listCategory;
+		String hql = "from Category ";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Category> list = query.list();
+		if (list == null || list.isEmpty()) {
+			System.out.println("No products available");
+		}
+		return list;
 	}
 }

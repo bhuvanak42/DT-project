@@ -10,7 +10,7 @@ public interface CategoryDAO {
 
 	public boolean update(Category category);
 
-	public void saveOrUpdate(Category category);
+	public boolean saveOrUpdate(Category category);
 
 	public boolean delete(String id);
 

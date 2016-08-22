@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.shopingcart.dao.CategoryDAO;
-import com.niit.shopingcart.model.Category;
+import com.niit.shopingcart.dao.ProductDAO;
+import com.niit.shopingcart.model.Product;
 
 public class ProductTest {
 
@@ -13,41 +13,67 @@ public class ProductTest {
 
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit.shopingcart");
-		context.refresh();
+		context.refresh();		
+	
+		ProductDAO productDAO = (ProductDAO) context.getBean("productDAO");
+		Product product = (Product) context.getBean("product");
+	
+	/*	
+		// INSERT OBJECTS INTO DB
+		product.setId("001");
+		product.setName("iPhone");
+		product.setDescription("Apple Phone");
+		product.setPrice(9999);
+		productDAO.save(product);
 
-		Category category = (Category) context.getBean("category");
-		CategoryDAO categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
+		product.setId("002");
+		product.setName("iPad");
+		product.setDescription("Apple Tablet");
+		product.setPrice(9999);
+		productDAO.save(product);
 
-		category.setId("TAB_aa002");
-		category.setName("iPhone");
-		category.setDescription("iPhone iiiproduct");
+		product.setId("003");
+		product.setName("MacBook");
+		product.setDescription("Apple Laptop and desktop");
+		product.setPrice(9999);
+		productDAO.save(product);
 
-		//boolean flag = categoryDAO.update(category);
-		boolean flag=categoryDAO.delete("TAB_001");
-		System.out.println(flag);	
+		product.setId("004");
+		product.setName("Watch");
+		product.setDescription("Apple watches");
+		product.setPrice(9999);
+		productDAO.save(product);
+
+		// save or update, update and delete operations
+		product.setId("005");
+		product.setName("Object to update");
+		product.setDescription("object to update Apple TV");
+		product.setPrice(9999);
+		productDAO.saveOrUpdate(product);
+
+		product.setId("005");
+		product.setName("TV");
+		product.setDescription("Apple TV");
+		product.setPrice(9999);
+		productDAO.update(product);
+
 		
-		if (flag == true) {
-			System.out.println("Category updated to database successfully ");
-		} else {
-			
-			System.out.println("Category update was unsuccessfull");
-		}
+		  product.setId("006"); 
+		  product.setName("product to delete");
+		  product.setDescription("product to delete");
+		  product.setPrice(9999);
+		  productDAO.save(product);		 
+*/
+	//	 productDAO.delete("006");
 
-		/*
-		 * //important..... donot delete category=categoryDAO.get("TAB_009");
-		 * if(category!=null) System.out.println(category.getId() + ":" +
-		 * category.getName() + ":" + category.getDescription()); else
-		 * System.out.println("CATEGORY not found in db");
-		 */
+		product = productDAO.get("001");
+		System.out.println(product.getId() + ":" + product.getName() + ":" + product.getDescription()+ ":" + product.getPrice());
 
-		// categoryDAO.saveOrUpdate(category);
+		/*List<Product> list = productDAO.list();
 
-		/*
-		 * List<Category> list = categoryDAO.list();
-		 * 
-		 * for (Category cat : list) { System.out.println(cat.getId() + ":" +
-		 * cat.getName() + ":" + cat.getDescription()); }
-		 */
+		for (Product c : list) {
+			System.out.println(c.getId() + ":" + c.getName() + ":" + c.getDescription()+ ":" + product.getPrice());
+		}*/
 
 	}
 }

@@ -17,14 +17,11 @@ import com.niit.shopingcart.model.Product;
 @Repository("productDAO")
 public class ProductDAOImpl implements ProductDAO {
 
-	private static final Logger log=LoggerFactory.getLogger(ProductDAOImpl.class);
-	
-	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	public ProductDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+		this.sessionFactory = sessionFactory;		
 	}
 
 	@Transactional
@@ -32,12 +29,22 @@ public class ProductDAOImpl implements ProductDAO {
 		// TODO Auto-generated method stub
 
 		try {
-			log.debug("Starting of method save");
 			sessionFactory.getCurrentSession().save(product);
-			log.debug("Ending of method save");
 			return true;
 		} catch (HibernateException e) {
-			log.debug("Starting of catch in method save");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Transactional
+	public boolean saveOrUpdate(Product product) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(product);
+			sessionFactory.getCurrentSession().flush();
+			return true;
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
@@ -46,57 +53,37 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	public boolean update(Product product) {
-		// TODO Auto-generated method stub
-		try {log.debug("Starting of method update");
+		try {
 			sessionFactory.getCurrentSession().update(product);
 			sessionFactory.getCurrentSession().flush();
-			log.debug("Ending of method save");
 			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			
-			System.out.println("Product updateeeeee was unsuccessfull in impl");
-			//e.printStackTrace();			
-		}
-		System.out.println("xxxxxxxxxx");
-		return false;
-	}
-
-	@Transactional
-	public void saveOrUpdate(Product product) {
-		try {log.debug("Starting of method save or update");
-			sessionFactory.getCurrentSession().saveOrUpdate(product);
-			sessionFactory.getCurrentSession().flush();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.debug("Ending of method save or update");
-			System.out.println("Product update was unsuccessfull in impl");
+			return false;
 		}
 	}
 
 	@Transactional
 	public boolean delete(String id) {
-		try {log.debug("Starting of method delete");
+		try {
 			Product productToDelete = new Product();
-			productToDelete.setId(id);		
+			productToDelete.setId(id);
 			sessionFactory.getCurrentSession().delete(productToDelete);
 			sessionFactory.getCurrentSession().flush();
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Product delete was unsuccessfull in impl");
 			e.printStackTrace();
-			log.debug("Ending of method delete");
 			return false;
 		}
 	}
 
 	@Transactional
 	public Product get(String id) {
-		
-		log.debug("Starting of method get id");
+
+
 		String hql = "from Product where id='" + id + "'";
+
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		@SuppressWarnings("unchecked")
@@ -105,19 +92,18 @@ public class ProductDAOImpl implements ProductDAO {
 		if (listProduct != null && !listProduct.isEmpty()) {
 			return listProduct.get(0);
 		}
-		log.debug("Ending of method get id");
-
 		return null;
 	}
 
 	@Transactional
 	public List<Product> list() {
-		log.debug("Starting of method list");
-		@SuppressWarnings("unchecked")
-		List<Product> listProduct = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
-		log.debug("Ending of method list");
-		return listProduct;
+		String hql = "from Product ";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> list = query.list();
+		if (list == null || list.isEmpty()) {
+			System.out.println("No products available");
+		}
+		return list;
 	}
 }
