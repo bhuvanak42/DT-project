@@ -3,8 +3,9 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@include file="/WEB-INF/views/Header.jsp"%>
 
+<%-- <%@include file="/WEB-INF/views/Header.jsp"%>
+ --%>
 
         <form:form action="register" method="post" commandName="usersDetail">
 				   
@@ -160,4 +161,4 @@
 								</div>
 								</form:form>
 
-        <%@include file="/WEB-INF/views/Footer.jsp" %>
+      <%--   <%@include file="/WEB-INF/views/Footer.jsp" %> --%>

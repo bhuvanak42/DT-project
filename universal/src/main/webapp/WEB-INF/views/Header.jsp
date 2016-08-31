@@ -33,15 +33,11 @@ _________________________________________________________ -->
 
 						<p class="hidden-md hidden-lg">
 							<a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
-							<a href="#" data-animate-hover="pulse"><i
-								class="fa fa-envelope"></i></a>
+							<a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 						</p>
 					</div>
 					<div class="col-xs-7">
 						<div class="social">
-						
-							
-						
 							<a href="<c:url value ="http://www.facebook.com"/>" class="external facebook" data-animate-hover="pulse"><i
 								class="fa fa-facebook"></i></a> 
 								
@@ -95,8 +91,8 @@ _________________________________________________________ -->
 
 						<a class="navbar-brand home" href="index.html"> 
 								<img src="<c:url value ="/resources/img/logo.png"/>" alt="Apple eStore logo" class="hidden-xs hidden-sm">
-                               <img src="<c:url value ="/resources/img/logo-small.png"/>" alt="Apple eStore logo" class="visible-xs visible-sm">
-                               <span class="sr-only">Universal - go to homepage</span> 
+                              <%--  <img src="<c:url value ="/resources/img/logo-small.png"/>" alt="Apple eStore logo" class="visible-xs visible-sm">
+                               <span class="sr-only">Universal - go to homepage</span>  --%>
 						</a>
 						<div class="navbar-buttons">
 							<button type="button" class="navbar-toggle btn-template-main"
@@ -111,8 +107,7 @@ _________________________________________________________ -->
 					<div class="navbar-collapse collapse" id="navigation">
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="index">Home <b
-									class="caret"></b></a>
+							<li><a href="index">Home <b class="caret"></b></a>
 									
 									
 								<!-- <ul class="dropdown-menu">
@@ -137,22 +132,7 @@ _________________________________________________________ -->
 												<div class="col-sm-3">
 													<h5>Home</h5>
 													<ul>
-														<li><a href="index">Option 1: Default Page</a></li>
-														<li><a href="index2.html">Option 2: Application</a></li>
-														<li><a href="index3.html">Option 3: Startup</a></li>
-														<li><a href="index4.html">Option 4: Agency</a></li>
-														<li><a href="index5.html">Option 5: Portfolio</a></li>
-													</ul>
-													<h5>About</h5>
-													<ul>
-														<li><a href="about.html">About us</a></li>
-														<li><a href="team.html">Our team</a></li>
-														<li><a href="team-member.html">Team member</a></li>
-														<li><a href="services.html">Services</a></li>
-													</ul>
-													<h5>Marketing</h5>
-													<ul>
-														<li><a href="packages.html">Packages</a></li>
+														<li><a href="index">Default Page</a></li>
 													</ul>
 												</div>
 
@@ -162,40 +142,10 @@ _________________________________________________________ -->
 													<h5>User pages</h5>
 													<ul>
 														<li><a href="register">Register</a></li>
-														<li><a href="login">Login</a></li>
-														<li><a href="customer-orders.html">Orders history</a>
-														</li>
-														<li><a href="customer-order.html">Order history
-																detail</a></li>
-														<li><a href="customer-wishlist.html">Wishlist</a></li>
-														<li><a href="customer-account.html">Customer
-																account / change password</a></li>
+														<li><a href="loginPage">Login</a></li>
 													</ul>
 												</div>
-												<div class="col-sm-3">
-													<h5>Shop</h5>
-													<ul>
-														<li><a href="shop-category.html">Category -
-																sidebar right</a></li>
-														<li><a href="shop-category-left.html">Category -
-																sidebar left</a></li>
-														<li><a href="shop-category-full.html">Category -
-																full width</a></li>
-														<li><a href="shop-detail.html">Product detail</a></li>
-													</ul>
-													<h5>Shop - order process</h5>
-													<ul>
-														<li><a href="shop-basket.html">Shopping cart</a></li>
-														<li><a href="shop-checkout1.html">Checkout - step
-																1</a></li>
-														<li><a href="shop-checkout2.html">Checkout - step
-																2</a></li>
-														<li><a href="shop-checkout3.html">Checkout - step
-																3</a></li>
-														<li><a href="shop-checkout4.html">Checkout - step
-																4</a></li>
-													</ul>
-												</div>
+												
 												<div class="col-sm-3">
 													<h5>Contact</h5>
 													<ul>

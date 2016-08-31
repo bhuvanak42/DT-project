@@ -13,5 +13,6 @@ public interface UsersDetailDao {
    public List<UsersDetail> getAllUsers();
 
     UsersDetail getUserByUsername (String username);
-
+    
+  //  public UsersDetail isValidUser(String id, String password);
 }

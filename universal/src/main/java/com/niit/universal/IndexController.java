@@ -4,28 +4,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
 
 	@RequestMapping("/")
 	public String getPage() {
-		return "login";
+		return "iindex";
 	}
 
-	@RequestMapping("register")
-	public String getRegisterPage() {
-		return "customerRegister";
+	@RequestMapping("/index")
+	public String gethomePage() {
+		return "iindex";
 	}
-
-	@RequestMapping("/login")
-	public String login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model) {
-		if (error != null) {			
-			return "customerLogin";
-		}
-		model.addAttribute("error", "Invalid username and password");
-		return "iindex";// return to landing page
+	
+	@RequestMapping("/success")
+	public String getSuccessPage() {
+		return "success";
 	}
-
 }

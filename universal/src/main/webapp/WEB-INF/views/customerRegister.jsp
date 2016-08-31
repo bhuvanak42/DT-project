@@ -109,7 +109,7 @@
 					</div>
 					<div class="col-md-5">
 						<ul class="breadcrumb">
-							<li><a href="index.html">Home</a></li>
+							<li>Home</li>
 							<li>Sign up</li>
 						</ul>
 
@@ -140,63 +140,54 @@
 						<hr>
 
 						<!-- LOOK HERE -->
-						<form:form action="register" method="post"
-							commandName="usersDetail">
+						<form:form action="register" method="post" commandName="usersDetail">
 
-							<div class="form-group">
-								<label class="fullname-signup">Name</label>
+								<div class="form-group">
+								<label for="fullname-signup">Full Name</label>
 								<form:errors path="userFullName" cssStyle="color: #ff0000" />
 								<div class="controls docs-input-sizes">
-									<form:input path="userFullName" id="fullname-signup"
-										class="form-Control" />
+									<form:input type="text" placeholder="user full name" path="userFullName" class="form-control" id="userFullName" />
 								</div>
-							</div>
+
+
 
 							<div class="form-group">
-								<label for="name-signup">Name</label> <span
-									style="color: #ff0000">${usernameMsg}</span>
+								<label for="name-signup">Name</label>
+								<span style="color: #ff0000">${usernameMsg}</span>
 								<form:errors path="username" cssStyle="color: #ff0000" />
 								<div class="controls docs-input-sizes">
-									<form:input path="userFullName" class="form-control"
-										id="name-signup" />
+									<form:input type="text" placeholder="user name" path="username" class="form-control" id="username" />
 								</div>
-
-
-
-
-
-								<!--  <div class="form-group">
-                                    <label for="address-signup">Address</label>
-                                    <textarea class="form-control" rows="5" id="address-signup"></textarea>                                    
-                                </div> -->
-
-
-
 
 
 								<div class="form-group">
 									<label for="name-signup">Phone</label>
 									<div class="controls docs-input-sizes">
-										<form:input path="userPhone" class="form-control"
-											id="phone-signup" max="10" />
+										<form:input  type="text" placeholder="phone" path="userPhone" 
+										class="form-control" id="phone-signup" max="10" />
 									</div>
 								</div>
 
 
-
-
-
-
 								<div class="form-group">
-									<label class="email-signup">Email</label> <span
-										style="color: #ff0000">${emailMsg}</span>
+									<label for="email-signup">Email</label>
+									<span style="color: #ff0000">${emailMsg}</span> 
+									<form:errors path="userEmail" cssStyle="color: #ff0000" />
 									<div class="controls docs-input-sizes">
+										<form:input  type="text" placeholder="email" path="userEmail" 
+										class="form-control" id="email-signup" />
+									</div>
+								</div>
+
+								<%-- <div class="form-group">
+									<label class="email-signup">Email</label>
+									 <span style="color: #ff0000">${emailMsg}</span> 									
 										<form:errors path="userEmail" cssStyle="color: #ff0000" />
 										<div class="controls docs-input-sizes">
-											<form:input path="userEmail" id="email-signup"
-												class="form-Control" />
+											<form:input  type="text" path="userEmail" id="email-signup"
+												placeholder="email" class="form-Control" />
 										</div>
-									</div>
+									</div> --%>
 								</div>
 
 
@@ -207,20 +198,10 @@
 									<label for="password-signup">Password</label>
 									<form:errors path="password" cssStyle="color: #ff0000" />
 									<div class="controls docs-input-sizes">
-										<form:input path="password" class="form-control"
-											id="password-signup" min="7" max="15" />
+										<form:input type="password" path="password" class="form-control"
+											placeholder="password" id="password-signup" min="7" max="15" />
 									</div>
 								</div>
-
-
-
-
-
-
-								<!-- <div class="form-group">
-                                    <label for="password">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirm-password-signup"/>
-                                </div> -->
 
 
 
@@ -238,7 +219,7 @@
 
 						</form:form>
 						<br> <br>
-
+					
 					</div>
 
 				</div>
