@@ -7,29 +7,21 @@
 <head>
 </head>
 <body>
-<header> <!-- *** TOP ***
+	<header> <!-- *** TOP ***
 _________________________________________________________ -->
-		<div id="all">
+	<div id="all">
 		<div id="top">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-5 contact">
 						<p class="hidden-sm hidden-xs">
-							<a href="#" data-animate-hover="pulse">
-							<i class="fa fa-phone"></i>
-							<span
-								class="hidden-xs text-uppercase">
-							Contact us on +080 666 555 333
-							</span>
-							<br>
-							<a href="#" data-animate-hover="pulse">
-							<i class="fa fa-envelope"></i>
-							<span
-								class="hidden-xs ">
-							customerfeedback@appleestore.com
-							</span>
-							
-							</p>
+							<a href="#" data-animate-hover="pulse"> <i
+								class="fa fa-phone"></i> <span class="hidden-xs text-uppercase">
+									Contact us on +080 666 555 333 </span> <br> 
+									<a href="#" data-animate-hover="pulse"> 
+								<i class="fa fa-envelope"></i> 
+								<span class="hidden-xs "> customerfeedback@appleestore.com </span>
+						</p>
 
 						<p class="hidden-md hidden-lg">
 							<a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
@@ -38,48 +30,57 @@ _________________________________________________________ -->
 					</div>
 					<div class="col-xs-7">
 						<div class="social">
-							<a href="<c:url value ="http://www.facebook.com"/>" class="external facebook" data-animate-hover="pulse"><i
-								class="fa fa-facebook"></i></a> 
-								
-							<a href="<c:url value ="http://www.googleplus.com"/>" class="external gplus"
-								data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
-								
-							<a href="<c:url value ="http://www.twitter.com"/>" class="external twitter" data-animate-hover="pulse"><i
-								class="fa fa-twitter"></i></a> 
-								
-								<!-- PUT CODE TO COMPOSE A MAIL REMOVE GMAIL.COM  -->
+							<a href="<c:url value ="http://www.facebook.com"/>"
+								class="external facebook" data-animate-hover="pulse"><i
+								class="fa fa-facebook"></i></a> <a
+								href="<c:url value ="http://www.googleplus.com"/>"
+								class="external gplus" data-animate-hover="pulse"><i
+								class="fa fa-google-plus"></i></a> <a
+								href="<c:url value ="http://www.twitter.com"/>"
+								class="external twitter" data-animate-hover="pulse"><i
+								class="fa fa-twitter"></i></a>
+
+							<!-- PUT CODE TO COMPOSE A MAIL REMOVE GMAIL.COM  -->
 							<a href="<c:url value ="http://www.gmail.com"/>" class="email"
 								data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 						</div>
 
 						<div class="login">
-						
-						<!-- <a href="index"><span class="glyphicon glyphicon-home">
-							Home </span></a> -->
-							
-							
-							<a href="index" ><i
-								class="fa fa-home"></i> <span
-								class="hidden-xs text-uppercase">Home</span></a>
-							
-							
-							<a href="#" data-toggle="modal" data-target="#login-modal"><i
-								class="fa fa-sign-in"></i> <span
-								class="hidden-xs text-uppercase">Sign in</span></a>
-								<!-- CODE HERE -->
-							
-							<a href="#" data-toggle="modal" data-target="#signup-modal">
-							<i class="fa fa-user">							
-							</i> <span
-								class="hidden-xs text-uppercase">Sign up</span></a>
-						</div>
 
+							<!-- <a href="index"><span class="glyphicon glyphicon-home">
+							Home </span></a> -->
+
+
+						<c:choose>
+							<c:when test="${pageContext.request.userPrincipal.name != null}">							
+								<c:if test="${pageContext.request.userPrincipal.name != 'Admin'}">
+									<a href="<c:url value="/" />">Cart</a>
+								</c:if>
+								<c:if
+									test="${pageContext.request.userPrincipal.name  == 'Admin'}">
+									<%-- <a href="<c:url value="/" />">View Inventory</a>
+									<a href="<c:url value="/" />">View Customer</a> --%>
+								</c:if>
+								
+								<a>Hello, ${pageContext.request.userPrincipal.name}</a>
+								<a href="<c:url value="/j_spring_security_logout"/>">Sign Out</a>
+							</c:when>						
+							<c:otherwise>					
+							​<a href="index"><i class="fa fa-home"></i>
+							<span class="hidden-xs text-uppercase">Home</span></a>
+							<a href="loginPage"> <i class="fa fa-sign-in"></i> 
+							<span class="hidden-xs text-uppercase">Sign in</span></a> 
+							<a href="register"><i class="fa fa-user"> </i> 
+							<span class="hidden-xs text-uppercase">Sign up</span></a>
+							</c:otherwise>
+						</c:choose>
+						</div>
+	
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- *** TOP END *** --> <!-- *** NAVBAR ***
+		</div> <!-- *** TOP END *** -->
+		<!-- *** NAVBAR ***
     _________________________________________________________ -->
 
 		<div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
@@ -89,9 +90,9 @@ _________________________________________________________ -->
 				<div class="container">
 					<div class="navbar-header">
 
-						<a class="navbar-brand home" href="index.html"> 
-								<img src="<c:url value ="/resources/img/logo.png"/>" alt="Apple eStore logo" class="hidden-xs hidden-sm">
-                              <%--  <img src="<c:url value ="/resources/img/logo-small.png"/>" alt="Apple eStore logo" class="visible-xs visible-sm">
+						<a class="navbar-brand home" href="index.html"> <img
+							src="<c:url value ="/resources/img/logo.png"/>"
+							alt="Apple eStore logo" class="hidden-xs hidden-sm"> <%--  <img src="<c:url value ="/resources/img/logo-small.png"/>" alt="Apple eStore logo" class="visible-xs visible-sm">
                                <span class="sr-only">Universal - go to homepage</span>  --%>
 						</a>
 						<div class="navbar-buttons">
@@ -107,18 +108,7 @@ _________________________________________________________ -->
 					<div class="navbar-collapse collapse" id="navigation">
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="index">Home <b class="caret"></b></a>
-									
-									
-								<!-- <ul class="dropdown-menu">
-									<li><a href="index.html">Option 1: Default Page</a></li>
-									<li><a href="index2.html">Option 2: Application</a></li>
-									<li><a href="index3.html">Option 3: Startup</a></li>
-									<li><a href="index4.html">Option 4: Agency</a></li>
-									<li><a href="index5.html">Option 5: Portfolio</a></li>
-								</ul> -->
-								
-								</li>
+							<li><a href="index">Home <b class="caret"></b></a></li>
 
 							<!-- ========== FULL WIDTH MEGAMENU ================== -->
 							<li class="dropdown use-yamm yamm-fw"><a href="#"
@@ -139,13 +129,39 @@ _________________________________________________________ -->
 
 												<div class="col-sm-3">
 
+													
+												<c:choose>
+												<c:when test="${pageContext.request.userPrincipal.name != null}">
+													<c:if test="${pageContext.request.userPrincipal.name == 'Admin'}">
+													<h5>Admin pages</h5>
+													<ul>
+														<li><a href="categories">Category</a></li>
+														<li><a href="suppliers">Supplier</a></li>
+														<li><a href="products">Product</a></li>
+														<li><a href="customers">View Customers</a></li>
+														
+													</ul>
+													</c:if>
+													
+													<c:if test="${pageContext.request.userPrincipal.name != 'Admin'}">
+													<h5>User pages</h5>
+													<ul>
+														<li><a href="cart">Cart</a></li>
+													</ul>
+													</c:if>
+													</c:when>
+													
+													<c:otherwise>
 													<h5>User pages</h5>
 													<ul>
 														<li><a href="register">Register</a></li>
 														<li><a href="loginPage">Login</a></li>
 													</ul>
-												</div>
-												
+													</c:otherwise>
+											</c:choose>
+											</div>
+											
+
 												<div class="col-sm-3">
 													<h5>Contact</h5>
 													<ul>
@@ -153,19 +169,21 @@ _________________________________________________________ -->
 														<li><a href="contact2.html">Contact - version 2</a></li>
 														<li><a href="contact3.html">Contact - version 3</a></li>
 													</ul>
+												</div>
 
-
+												<div class="col-sm-3">
 													<h5>Blog</h5>
 													<ul>
 														<li><a href="blog.html">Blog listing big</a></li>
 														<li><a href="blog-medium.html">Blog listing
 																medium</a></li>
-														<li><a href="blog-small.html">Blog listing small</a>
-														</li>
+														<li><a href="blog-small.html">Blog listing small</a></li>
 														<li><a href="blog-post.html">Blog Post</a></li>
 													</ul>
 												</div>
+
 											</div>
+											<!-- /row-content -->
 										</div> <!-- /.yamm-content -->
 									</li>
 								</ul></li>
@@ -183,9 +201,6 @@ _________________________________________________________ -->
 						</ul>
 
 					</div>
-					<!--/.nav-collapse -->
-
-
 
 					<div class="collapse clearfix" id="search">
 						<form class="navbar-form" role="search">
@@ -201,7 +216,13 @@ _________________________________________________________ -->
 						</form>
 
 					</div>
+
+
 					<!--/.nav-collapse -->
+
+
+
+
 
 				</div>
 
@@ -211,108 +232,11 @@ _________________________________________________________ -->
 
 		</div>
 
-</div>
-		<!-- *** NAVBAR END *** --> </header>
-		
-	
-	<!-- *** LOGIN MODAL ***
-_________________________________________________________ -->
+	</div>
+	<!-- *** NAVBAR END *** --> 
 
-        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
+</header>
 
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="Login">Customer login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="login" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email_modal" placeholder="email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password_modal" placeholder="password">
-                            </div>
 
-                            <p class="text-center">
-                                <button class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
-                            </p>
-
-                        </form>
-
-                        <p class="text-center text-muted">Not registered yet?</p>
-                        <p class="text-center text-muted">
-                        <a href="register"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- *** LOGIN MODAL END *** -->
-        
-        
-        
-        <!-- *** SIGN UP MODAL ***
-_________________________________________________________ -->
-
-       <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="Login">CUSTOMER REGISTER</h4>
-                    </div>
-                    <div class="modal-body">
-                    
-                    
-                      	  <form action="customer-orders.html" method="post">
-                                <div class="form-group">
-                                    <label for="name-signup">Name</label>
-                                    <input type="text" class="form-control" id="name-signup" placeholder="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name-signup">Address</label>
-                                    <textarea class="form-control" rows="5" id="address-signup" placeholder="address"></textarea>                                    
-                                </div>
-                                <div class="form-group">
-                                    <label for="name-signup">Phone</label>
-                                    <input type="text" class="form-control" id="phone-signup" placeholder="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email-signup">Email</label>
-                                    <input type="text" class="form-control" id="email-signup" placeholder="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password-signup">Password</label>
-                                    <input type="password" class="form-control" id="password-signup" placeholder="password">
-                                </div>
-                                 <div class="form-group">
-                                    <label for="confirm-password-signup">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirm-password-signup" placeholder="confirm password">
-                                </div>
-                                <div class="text-center form-group">
-                                    <button type="submit" class="btn btn-template-main pull-left"><i class="fa fa-user-md"></i> Register</button>
-                                </div>
-                               <div class="text-center form-group">
-                                    <button type="reset" class="btn btn-template-main pull-right" value="Reset">Clear</button>
-                                </div> 
-                                
-                            </form>
-
-                      <br><br><br> 
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- *** SIGN UP MODAL END *** -->
-        
-	
-		
-		
 </body>
 </html>

@@ -51,17 +51,15 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<!-- <bean id="userDetailsDao" class="com.niit.dao.UserDetailsDaoImpl" autowire="constructor"> 
-		<constructor-arg> <ref bean="sessionFactory" /> </constructor-arg> </bean> -->
-
 	<security:http auto-config="true">
-		<!-- <security:intercept-url pattern="/admin/**"
+		<security:intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/user/**"
 			access="ROLE_USER" />
- -->
+
 		<security:form-login login-page="/login"
-			default-target-url="/admin" authentication-failure-url="/login?error"
+			default-target-url="/" 		
+			authentication-failure-url="/login?error"
 			username-parameter="username" password-parameter="password" />
 		<security:logout logout-success-url="/login?logout" />
 	</security:http>

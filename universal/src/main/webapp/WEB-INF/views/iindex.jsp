@@ -640,7 +640,7 @@ _________________________________________________________ -->
 	<script>
 		window.jQuery
 				|| document
-						.write('<script src="<c:url value ="/resources/js/jquery-1.11.0.min.js"/>"></script>')
+						.write('<script src="/resources/js/jquery-1.11.0.min.js"></script>
 	</script>
 	
 	<script

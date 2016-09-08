@@ -14,5 +14,5 @@ public interface UsersDetailDao {
 
     UsersDetail getUserByUsername (String username);
     
-  //  public UsersDetail isValidUser(String id, String password);
+    public boolean isValidUser(String name, String password);
 }

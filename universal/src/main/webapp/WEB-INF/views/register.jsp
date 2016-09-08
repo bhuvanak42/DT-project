@@ -8,7 +8,7 @@
  --%>
 
         <form:form action="register" method="post" commandName="usersDetail">
-				   
+				   <h4>${message}</h4>
 				    <div class="span9 margin-top">
                    <div class="span9 center margin-bottom"> 
 					<h3>Registration Form</h3>

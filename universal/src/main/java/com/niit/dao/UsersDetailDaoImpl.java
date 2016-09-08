@@ -44,22 +44,22 @@ public class UsersDetailDaoImpl implements UsersDetailDao{
     }
 
     
-   /* //LOOK HERE
+   //LOOK HERE
     @Transactional
-    public UsersDetail isValidUser(String id, String password)
+    public boolean isValidUser(String name, String password)
     {
     	//select * from UserDetails where id='101' and password='niit'
-    	String hql="from UserDetails where id='"+id+"' and password='"+password+"'";
+    	String hql="from UserDetails where name='"+name+"' and password='"+password+"'";
     	Query query=sessionFactory.getCurrentSession().createQuery(hql);
     	
     	List<UsersDetail> list=query.list();//list of user details
     	if(list==null){
-        	return null;    		
+        	return false;    		
     	}
     	else{
-    		return list.get(0);
+    		return true;
     	}
-    }*/
+    }
     
     
     public UsersDetail getUserById (int userId) {

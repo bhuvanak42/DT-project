@@ -1,3 +1,4 @@
+<%@page import="java.awt.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,10 +17,10 @@
 
 <title>Apple eStore</title>
 
-<meta name="keywords" content="">
+<meta name="keywords" content="" />
 
 <link
-	href="<c:url value='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800'/>"
+	href="<c:url value="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800"/>"
 	rel='stylesheet' type='text/css' />
 
 <!-- Bootstrap and Font Awesome css -->
@@ -28,22 +29,17 @@
 <link rel="stylesheet"
 	href="<c:url value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>" />
 
+
 <!-- Css animations  -->
 <link href="<c:url value="/resources/css/animate.css"/>"
 	rel="stylesheet">
 
 <!-- Theme stylesheet, if possible do not edit this stylesheet -->
 <link href="<c:url value="/resources/css/style.default.css"/>"
-	rel="stylesheet" id="theme-stylesheet">
+	rel="stylesheet" id="theme-stylesheet" />
 
 <!-- Custom stylesheet - for your changes -->
 <link href="<c:url value="/resources/css/custom.css"/>" rel="stylesheet" />
-
-<!-- Responsivity for older IE -->
-<!--[if lt IE 9]>
-        <script src="<c:url value="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"/>"></script>
-        <script src="<c:url value="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"/>"></script>
-<![endif]-->
 
 <!-- Favicon and apple touch icons-->
 <link rel="shortcut icon"
@@ -75,7 +71,6 @@
 </head>
 
 
-
 <body>
 
 	<div id="all">
@@ -101,16 +96,21 @@
 
 
 
+
+
+
+
+
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
-						<h1>Sign up</h1>
+						<h1>Product</h1>
 					</div>
 					<div class="col-md-5">
 						<ul class="breadcrumb">
-							<li><a href="/">Home</a></li>
-							<li>Sign up</li>
+							<li><a href="/">Admin</a></li>
+							<li>Product</li>
 						</ul>
 
 					</div>
@@ -121,119 +121,64 @@
 		<div id="content">
 			<div class="container">
 
+
 				<div class="row">
 					<div class="col-md-6">
 
-						<h2 class="text-uppercase">Create a new account</h2>
-						<p class="lead">Not our registered customer yet?</p>
+						<h2 class="text-uppercase">List of products</h2>
+
+						<hr>
 						
-						<hr>
-						<p>With registration with us new world of fashion, fantastic
-							discounts and much more opens to you! The whole process will not
-							take you more than a minute!</p>
-						<p class="text-muted">
-							If you have any questions, please feel free to <a
-								href="contact.html">contact us</a>, our customer service center
-							is working for you 24/7.
-						</p>
-
-						<hr>
-
 						<!-- LOOK HERE -->
-						<form:form action="register" method="post" commandName="usersDetail">
-						<c:if test="${not empty error}">
-								<div class="error" style="color: #ff0000;">${message}</div>
-							</c:if>
+	<%
+		List productList = (List) session.getAttribute("productList");
+		request.setAttribute("productList", productList);
+	%>
+
+	<form method="get">
+	<button type="button" name="/product/add">ADD PRODUCT</button>
+	
+	<table>
+		<tr>
+			<th>Product Id</th>
+			<th>Product Name</th>
+			<th>Product Description</th>
+			<th>Category ID</th>
+			<th>Supplier ID</th>
+			<th>Update/Delete Product</th>
+			<th></th>
+		</tr>
+		<c:forEach items="${productList}" var="product">
+			<tr>
+				<td><c:out value="${product.getId()}" /></td>
+				<td><c:out value="${product.getName()}" /></td>
+				<td><c:out value="${product.getDescription()}" /></td>
+				<td><c:out value="${product.getCategory_id()}" /></td>
+				<td><c:out value="${product.getSupplier_id()}" /></td>
+				<td><button type="button" name="product/edit/">UPDATE</button>
+					<button type="button" name="product/remove/">DELETE</button></td>
+			</tr>
+		</c:forEach>
+	</table>
+	</form>
 							
-					
-								<div class="form-group">
-								<label for="fullname-signup">Full Name</label>
-								<form:errors path="userFullName" cssStyle="color: #ff0000" />
-								<div class="controls docs-input-sizes">
-									<form:input type="text" placeholder="user full name" path="userFullName" class="form-control" id="userFullName" />
-								</div>
 
 
 
-							<div class="form-group">
-								<label for="name-signup">Name</label>
-								<span style="color: #ff0000">${usernameMsg}</span>
-								<form:errors path="username" cssStyle="color: #ff0000" />
-								<div class="controls docs-input-sizes">
-									<form:input type="text" placeholder="user name" path="username" class="form-control" id="username" />
-								</div>
-
-
-								<div class="form-group">
-									<label for="name-signup">Phone</label>
-									<div class="controls docs-input-sizes">
-										<form:input  type="text" placeholder="phone" path="userPhone" 
-										class="form-control" id="phone-signup" max="10" />
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<label for="email-signup">Email</label>
-									<span style="color: #ff0000">${emailMsg}</span> 
-									<form:errors path="userEmail" cssStyle="color: #ff0000" />
-									<div class="controls docs-input-sizes">
-										<form:input placeholder="email" path="userEmail" class="form-control" id="email-signup" />
-									</div>
-								</div>
-
-								<%-- <div class="form-group">
-									<label class="email-signup">Email</label>
-									 <span style="color: #ff0000">${emailMsg}</span> 									
-										<form:errors path="userEmail" cssStyle="color: #ff0000" />
-										<div class="controls docs-input-sizes">
-											<form:input  type="text" path="userEmail" id="email-signup"
-												placeholder="email" class="form-Control" />
-										</div>
-									</div> --%>
-								</div>
-
-
-
-
-
-								<div class="form-group">
-									<label for="password-signup">Password</label>
-									<form:errors path="password" cssStyle="color: #ff0000" />
-									<div class="controls docs-input-sizes">
-										<form:input type="password" path="password" class="form-control"
-											placeholder="password" id="password-signup" min="7" max="15" />
-									</div>
-								</div>
-
-
-
-								<div class="text-center">
-									<button type="submit" class="btn btn-template-main pull-left">
-										<i class="fa fa-user-md"></i> Register
-									</button>
-								</div>
-
-								<div class="text-center">
-									<button type="reset" class="btn btn-template-main pull-right"
-										value="Reset">Clear</button>
-								</div>
-							</div>
-
-						</form:form>
-						<br> <br>
-					
+						
+						<br>
+						<br>
+						<br>
 					</div>
-
 				</div>
-				<!-- /.row -->
+
 
 			</div>
-			<!-- /.container -->
+
 		</div>
 		<!-- /#content -->
 
-		<br>
+
 		<!-- *** GET IT ***
 _________________________________________________________ -->
 
@@ -284,11 +229,9 @@ _________________________________________________________ -->
 
 	<script
 		src="<c:url value='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></c:url>"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write("<script src='<c:url value='/resources/js/jquery-1.11.0.min.js'></c:url>'/>")
-	</script>
+	<!--  <script>
+        window.jQuery || document.write("<script src='<c:url value='/resources/js/jquery-1.11.0.min.js'></c:url>'></script>")
+    </script> -->
 	<script
 		src="<c:url value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></c:url>"></script>
 
@@ -301,8 +244,5 @@ _________________________________________________________ -->
 	<script src="<c:url value='/resources/js/front.js'></c:url>">
 		
 	</script>
-
-
-
 </body>
 </html>
