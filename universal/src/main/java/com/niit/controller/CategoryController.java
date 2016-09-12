@@ -37,7 +37,7 @@ public class CategoryController {
 		model.addAttribute("category", category);
 		//model.addAttribute("isAdminClickedCategories", "true");
 		model.addAttribute("categoryList",categoryDAO.list());
-		return "category";
+		return "categoryPage";
 	}
 
 	// For add and update category both
@@ -70,6 +70,6 @@ public class CategoryController {
 		System.out.println("editCategory");
 		model.addAttribute("category", this.categoryDAO.get(id));
 		model.addAttribute("listCategorys", this.categoryDAO.list());
-		return "category";
+		return "categoryPage";
 	}
 }

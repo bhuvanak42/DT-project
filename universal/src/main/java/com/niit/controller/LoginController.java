@@ -21,6 +21,11 @@ public class LoginController {
 		return "customerLogin";
 	}
 
+	
+	/*SELECT *
+	FROM database.sys.all_objects
+	WHERE upper(name) like upper('my prefix%') */
+	
 
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.niit.dao.UsersDetailDao;
-import com.niit.model.UserRole;
-import com.niit.model.UsersDetail;
+import com.niit.shopingcart.dao.UsersDetailDao;
+import com.niit.shopingcart.model.UserRole;
+import com.niit.shopingcart.model.UsersDetail;
 
 import javax.validation.Valid;
 import java.util.List;

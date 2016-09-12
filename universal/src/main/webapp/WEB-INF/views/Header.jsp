@@ -138,7 +138,8 @@ _________________________________________________________ -->
 														<li><a href="categories">Category</a></li>
 														<li><a href="suppliers">Supplier</a></li>
 														<li><a href="products">Product</a></li>
-														<li><a href="customers">View Customers</a></li>
+														<!-- <li><a href="aadmin">Admin Page</a></li> -->
+														<!-- <li><a href="customers">View Customers</a></li> -->
 														
 													</ul>
 													</c:if>

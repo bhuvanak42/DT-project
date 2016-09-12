@@ -58,9 +58,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.dao.UsersDetailDao;
-import com.niit.model.UsersDetail;
-
+import com.niit.shopingcart.dao.UsersDetailDao;
 
 @Controller
 public class UserController {

@@ -1,4 +1,4 @@
-package com.niit.dao;
+/*package com.niit.dao;
 
 import java.util.List;
 
@@ -15,4 +15,4 @@ public interface UsersDetailDao {
     UsersDetail getUserByUsername (String username);
     
     public boolean isValidUser(String name, String password);
-}
+}*/

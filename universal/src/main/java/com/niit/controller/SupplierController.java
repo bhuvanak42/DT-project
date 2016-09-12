@@ -30,7 +30,7 @@ public class SupplierController {
 	public String listSuppliers(Model model) {
 		model.addAttribute("supplier", new Supplier());
 		model.addAttribute("supplierList", this.supplierDAO.list());
-		return "supplier";
+		return "supplierPage";
 	}
 
 	// For add and update supplier both
@@ -64,6 +64,6 @@ public class SupplierController {
 		System.out.println("editSupplier");
 		model.addAttribute("supplier", this.supplierDAO.get(id));
 		model.addAttribute("listSuppliers", this.supplierDAO.list());
-		return "supplier";
+		return "supplierPage";
 	}
 }

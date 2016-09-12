@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
 
 <head>
 
-<meta charset="utf-8">
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +45,7 @@
 <link rel="shortcut icon"
 	href="<c:url value ="/resources/img/favicon.icon"/>"
 	type="image/x-icon" />
-<link rel="apple-touch-icon"
+<%-- <link rel="apple-touch-icon"
 	href="<c:url value ="/resources/img/apple-touch-icon.png"/>" />
 <link rel="apple-touch-icon" sizes="57x57"
 	href="<c:url value ="/resources/img/apple-touch-icon-57x57.png"/>" />
@@ -61,13 +61,59 @@
 	href="<c:url value ="/resources/img/apple-touch-icon-144x144.png"/>" />
 <link rel="apple-touch-icon" sizes="152x152"
 	href="<c:url value ="/resources/img/apple-touch-icon-152x152.png"/>" />
-
+ --%>
 <!-- owl carousel css -->
 
 <link href="<c:url value ="/resources/css/owl.carousel.css"/>"
 	rel="stylesheet">
 <link href="<c:url value ="/resources/css/owl.theme.css"/>"
 	rel="stylesheet">
+<style type="text/css">
+
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+	-webkit-flex: 1; /* Safari 6.1+ */
+    -ms-flex: 1; /* IE 10 */ 
+    flex: 1;
+    width: 100%;
+}
+
+.tg tr:hover {background-color: #f5f5f5}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	text-align: center;
+	background-color: #f0f0f0;
+}
+
+.tg .tg-4eph {
+	background-color: #f9f9f9
+}
+</style>
 </head>
 
 
@@ -122,52 +168,122 @@
 			<div class="container">
 
 
-				<div class="row">
-					<div class="col-md-6">
-
-						<h2 class="text-uppercase">List of categories</h2>
-						
-						<hr>
-						
-						<!-- LOOK HERE -->
-	<%
-		List categoryList = (List) session.getAttribute("categoryList");
-		request.setAttribute("categoryList", categoryList);
-	%>
-
-	<form method="get">
-	<button type="button" name="/category/add">ADD CATEGORY</button>
-	
-	<table>
-		<tr>
-			<th>Category Id</th>
-			<th>Category Name</th>
-			<th>Category Description</th>
-			<th>Update/Delete Category </th>
-			<th></th>
-		</tr>
-		<c:forEach items="${categoryList}" var="category">
-			<tr>
-				<td><c:out value="${category.id}" /></td>
-				<td><c:out value="${category.name}" /></td>
-				<td><c:out value="${category.description}" /></td>
-				<td><button type="button" name="category/edit/">UPDATE</button>
-					<button type="button" name="category/remove/">DELETE</button></td>
-			</tr>
-		</c:forEach>
-	</table>
-	</form>					
+			
 
 
-
-						
-						<br>
-						<br>
-						<br>
-					</div>
-				</div>
+					<h3 class="text-uppercase">List of categories</h3>
 
 
+					<hr>
+
+					<!-- LOOK HERE -->
+
+					<h1>Add a Category</h1>
+
+					<c:url var="addAction" value="/category/add"></c:url>
+
+					<form:form action="${addAction}" commandName="category">
+
+
+						<div class="form-group">
+							<c:choose>
+								<c:when test="${!empty category.id}">
+
+									<div class="form-group">
+										<label for="name">ID</label>
+										<div class="controls docs-input-sizes">
+											<form:input placeholder="id" path="id" required="true"
+												class="form-control" id="id" disabled="true" readonly="true" />
+										</div>
+									</div>
+
+								</c:when>
+
+								<c:otherwise>
+
+									<div class="form-group">
+										<form:input path="id" hidden="true" />
+										<label for="id">ID</label>
+										<div class="controls docs-input-sizes">
+											<form:input placeholder="id" path="id" required="true"
+												class="form-control" id="id"
+												title="id should contains 6 to 7 characters"
+												patttern=".{6,7}" />
+										</div>
+									</div>
+
+								</c:otherwise>
+							</c:choose>
+
+						</div>
+
+						<div class="form-group">
+							<form:input path="id" hidden="true" />
+							<label for="name">Name</label>
+							<div class="controls docs-input-sizes">
+								<form:input placeholder="name" path="name" required="true"
+									class="form-control" id="name" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="description">Description</label>
+							<div class="controls docs-input-sizes">
+								<form:input placeholder="description" path="description"
+									class="form-control" id="description" />
+							</div>
+						</div>
+
+
+
+						<div class="form-group">
+							<div class="controls docs-input-sizes">
+								<c:if test="${!empty category.name}">
+
+									<button type="submit" class="btn btn-template-main pull-left">
+										<i class="fa fa-user-md"></i> Edit Category
+									</button>
+								</c:if>
+								<c:if test="${empty category.name}">
+
+									<button type="submit" class="btn btn-template-main pull-left">
+										<i class="fa fa-user-md"></i> Add Category
+									</button>
+								</c:if>
+							</div>
+						</div>
+					</form:form>
+				
+
+
+				<br>
+			
+					<div>
+						<c:if test="${!empty categoryList}">
+							<h3>Category List</h3>
+							<table class="tg">
+								<tr>
+									<th width="80">Category ID</th>
+									<th width="120">Category Name</th>
+									<th width="120">Category description</th>
+									<th width="60">Edit</th>
+									<th width="60">Delete</th>
+								</tr>
+								<c:forEach items="${categoryList}" var="category">
+									<tr>
+										<td>${category.id}</td>
+										<td>${category.name}</td>
+										<td>${category.description}</td>
+										<td><a
+											href="<c:url value='category/edit/${category.id}' />">Edit</a></td>
+										<td><a
+											href="<c:url value='category/remove/${category.id}' />">Delete</a></td>
+									</tr>
+								</c:forEach>
+							</table>
+						</c:if>
+						<br> <br> <br>
+			</div>
 			</div>
 
 		</div>

@@ -1,4 +1,4 @@
-package com.niit.model;
+/*package com.niit.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -43,4 +43,4 @@ public class UserRole implements Serializable {
     }
 
    
-}
+}*/

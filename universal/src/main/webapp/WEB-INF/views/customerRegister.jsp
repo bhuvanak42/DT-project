@@ -9,7 +9,6 @@
 
 <head>
 
-<meta charset="utf-8">
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +44,7 @@
         <script src="<c:url value="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"/>"></script>
 <![endif]-->
 
-<!-- Favicon and apple touch icons-->
+<!-- Favicon and apple touch icons
 <link rel="shortcut icon"
 	href="<c:url value ="/resources/img/favicon.icon"/>"
 	type="image/x-icon" />
@@ -65,7 +64,7 @@
 	href="<c:url value ="/resources/img/apple-touch-icon-144x144.png"/>" />
 <link rel="apple-touch-icon" sizes="152x152"
 	href="<c:url value ="/resources/img/apple-touch-icon-152x152.png"/>" />
-
+-->
 <!-- owl carousel css -->
 
 <link href="<c:url value ="/resources/css/owl.carousel.css"/>"
@@ -141,6 +140,7 @@
 
 						<!-- LOOK HERE -->
 						<form:form action="register" method="post" commandName="usersDetail">
+						
 						<c:if test="${not empty error}">
 								<div class="error" style="color: #ff0000;">${message}</div>
 							</c:if>
@@ -151,7 +151,7 @@
 								<form:errors path="userFullName" cssStyle="color: #ff0000" />
 								<div class="controls docs-input-sizes">
 									<form:input type="text" placeholder="user full name" path="userFullName" class="form-control" id="userFullName" />
-								</div>
+								</div> </div>
 
 
 
@@ -161,24 +161,26 @@
 								<form:errors path="username" cssStyle="color: #ff0000" />
 								<div class="controls docs-input-sizes">
 									<form:input type="text" placeholder="user name" path="username" class="form-control" id="username" />
-								</div>
+								</div> </div>
 
 
 								<div class="form-group">
 									<label for="name-signup">Phone</label>
 									<div class="controls docs-input-sizes">
-										<form:input  type="text" placeholder="phone" path="userPhone" 
+										<form:input type="text" placeholder="phone" path="userPhone" 
 										class="form-control" id="phone-signup" max="10" />
 									</div>
 								</div>
 
 
+								
 								<div class="form-group">
 									<label for="email-signup">Email</label>
-									<span style="color: #ff0000">${emailMsg}</span> 
-									<form:errors path="userEmail" cssStyle="color: #ff0000" />
+									<span style="color: #9860000">${emailMsg}</span> 
+									<form:errors path="userEmail" cssStyle="color: #550000" />
 									<div class="controls docs-input-sizes">
-										<form:input placeholder="email" path="userEmail" class="form-control" id="email-signup" />
+										<form:input placeholder="email" path="userEmail" pattern="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" 
+										title="abc@xyz.com" class="form-control" id="email-signup" />
 									</div>
 								</div>
 
@@ -190,8 +192,8 @@
 											<form:input  type="text" path="userEmail" id="email-signup"
 												placeholder="email" class="form-Control" />
 										</div>
-									</div> --%>
-								</div>
+									</div> 
+								</div>--%>
 
 
 
@@ -207,18 +209,19 @@
 								</div>
 
 
-
+								<div class="form-group">
 								<div class="text-center">
 									<button type="submit" class="btn btn-template-main pull-left">
 										<i class="fa fa-user-md"></i> Register
 									</button>
-								</div>
-
+								</div></div>
+								
+								<div class="form-group">
 								<div class="text-center">
 									<button type="reset" class="btn btn-template-main pull-right"
 										value="Reset">Clear</button>
-								</div>
-							</div>
+								</div></div>
+							
 
 						</form:form>
 						<br> <br>

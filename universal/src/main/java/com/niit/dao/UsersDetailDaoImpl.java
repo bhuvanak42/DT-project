@@ -1,4 +1,4 @@
-package com.niit.dao;
+/*package com.niit.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -81,4 +81,4 @@ public class UsersDetailDaoImpl implements UsersDetailDao{
         query.setString(0, username);
         return (UsersDetail) query.uniqueResult();
     }
-}
+}*/

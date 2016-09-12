@@ -93,7 +93,7 @@ public class UsersDetail implements Serializable{
  		this.userFullName = userFullName;
  	}
 }
-*/
+
 package com.niit.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -198,4 +198,4 @@ public class UsersDetail implements Serializable{
  	public void setUserFullName(String userFullName) {
  		this.userFullName = userFullName;
  	}
-}
+}*/
