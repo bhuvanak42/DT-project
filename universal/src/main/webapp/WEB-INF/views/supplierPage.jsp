@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -109,6 +109,12 @@
 .tg .tg-4eph {
 	background-color: #f9f9f9
 }
+
+
+.form-group input{
+	width:50%;
+}
+
 </style>
 </head>
 
@@ -387,21 +393,23 @@ _________________________________________________________ -->
 	<!-- #### JAVASCRIPT FILES ### -->
 
 	<script
-		src="<c:url value='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></c:url>"></script>
-	<!--  <script>
-        window.jQuery || document.write("<script src='<c:url value='/resources/js/jquery-1.11.0.min.js'></c:url>'></script>")
-    </script> -->
-	<script
-		src="<c:url value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></c:url>"></script>
-
-	<script src="<c:url value="/resources/js/jquery.cookie.js"></c:url>"></script>
-	<script src="<c:url value="/resources/js/waypoints.min.js"></c:url>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery.counterup.min.js"></c:url>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery.parallax-1.1.3.js"></c:url>"></script>
-	<script src="<c:url value='/resources/js/front.js'></c:url>">
-		
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="/resources/js/jquery-1.11.0.min.js"><\/script>');
 	</script>
+	
+	<script
+		src="<c:url value='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'/>"></script>
+
+	<script src="<c:url value ="/resources/js/jquery.cookie.js"/>"></script>
+	<script src="<c:url value ="/resources/js/waypoints.min.js"/>"></script>
+	<script src="<c:url value ="/resources/js/jquery.counterup.min.js"/>"></script>
+	<script src="<c:url value ="/resources/js/jquery.parallax-1.1.3.js"/>"></script>
+	<script src="<c:url value ="/resources/js/front.js"/>"></script>
+
+	<!-- owl carousel -->
+	<script src="<c:url value ="/resources/js/owl.carousel.min.js"/>"></script>
 </body>
 </html>

@@ -159,6 +159,7 @@
 					  			<input type="submit" value="submit" class="btn btn-primary"  />
 							  <a href="<c:url value="/" />" class="btn btn-danger margin-left25">Cancel</a>
 								</div>
+						</div>
 								</form:form>
 
       <%--   <%@include file="/WEB-INF/views/Footer.jsp" %> --%>

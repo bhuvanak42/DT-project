@@ -1,4 +1,4 @@
-/*package com.niit.controller;
+package com.niit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +16,7 @@ import com.niit.shopingcart.model.Category;
 import com.niit.util.Util;
 
 @Controller
-public class CategoryController {
+public class CCategoryController {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -29,23 +29,15 @@ public class CategoryController {
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
-	
-	@RequestMapping(value = "/onLoad", method = RequestMethod.GET)
-	public String onLoad(Model model) {
-		System.out.println("onLoad");
-		model.addAttribute("category", new Category());
-		model.addAttribute("categoryList", this.categoryDAO.list());
-		return "/iindex";
-	}
-	
+
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public String listCategories(Model model) {
 		//System.out.println("Hello.. I'm inside /categories list");
 		//TO CARRY THE DATA TO NEXT PAGE
-		model.addAttribute("isAdminClickedCategories", "true");
 		model.addAttribute("category", category);
+		model.addAttribute("isAdminClickedCategories", "true");
 		model.addAttribute("categoryList",categoryDAO.list());
-		return "categoryPage";
+		return "Admin";
 	}
 
 	// For add and update category both
@@ -54,17 +46,18 @@ public class CategoryController {
 
 		String newID=Util.removeComma(category.getId());
 		category.setId(newID);
+		
 		categoryDAO.saveOrUpdate(category);
 
 		return "redirect:/categories";
 	}
 
-	@RequestMapping("/category/remove/{id}")
+	@RequestMapping("category/remove/{id}")
 	public String removeCategory(@PathVariable("id") String id, ModelMap model) throws Exception {
 
 		try {
 			categoryDAO.delete(id);
-			model.addAttribute("message", "Successfully Added");
+			//model.addAttribute("message", "Successfully Deleted");
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
@@ -73,11 +66,17 @@ public class CategoryController {
 		return "redirect:/categories";
 	}
 
-	@RequestMapping("/category/edit/{id}")
+	@RequestMapping("category/edit/{id}")
 	public String editCategory(@PathVariable("id") String id, Model model) {
+	//	System.out.println("editCategory");
+		model.addAttribute("isAdminClickedEditCategories", "true");
 		model.addAttribute("category", this.categoryDAO.get(id));
-		//model.addAttribute("listCategories", this.categoryDAO.list());
-		return "categoryPage";
+		model.addAttribute("categoryList",categoryDAO.list());
+		return "Admin";
 	}
+	
+	
+	
+	
+	
 }
-*/

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,23 +14,9 @@ _________________________________________________________ -->
 		<div id="top">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-5 contact">
-						<p class="hidden-sm hidden-xs">
-							<a href="#" data-animate-hover="pulse"> <i
-								class="fa fa-phone"></i> <span class="hidden-xs text-uppercase">
-									Contact us on +080 666 555 333 </span> <br> 
-									<a href="#" data-animate-hover="pulse"> 
-								<i class="fa fa-envelope"></i> 
-								<span class="hidden-xs "> customerfeedback@appleestore.com </span>
-						</p>
-
-						<p class="hidden-md hidden-lg">
-							<a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
-							<a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-						</p>
-					</div>
-					<div class="col-xs-7">
-						<div class="social">
+					
+					<div class="col-sm-4">
+						<div class="social pull-left">
 							<a href="<c:url value ="http://www.facebook.com"/>"
 								class="external facebook" data-animate-hover="pulse"><i
 								class="fa fa-facebook"></i></a> <a
@@ -44,8 +31,10 @@ _________________________________________________________ -->
 							<a href="<c:url value ="http://www.gmail.com"/>" class="email"
 								data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 						</div>
+						</div>
 
-						<div class="login">
+						<div class="col-sm-8">
+						<div class="login pull-right">
 
 							<!-- <a href="index"><span class="glyphicon glyphicon-home">
 							Home </span></a> -->
@@ -53,30 +42,32 @@ _________________________________________________________ -->
 
 						<c:choose>
 							<c:when test="${pageContext.request.userPrincipal.name != null}">							
-								<c:if test="${pageContext.request.userPrincipal.name != 'Admin'}">
+								<%-- <c:if test="${pageContext.request.userPrincipal.name != 'Admin'}">
 									<a href="<c:url value="/" />">Cart</a>
 								</c:if>
 								<c:if
 									test="${pageContext.request.userPrincipal.name  == 'Admin'}">
-									<%-- <a href="<c:url value="/" />">View Inventory</a>
-									<a href="<c:url value="/" />">View Customer</a> --%>
-								</c:if>
+									<a href="<c:url value="/" />">View Inventory</a>
+									<a href="<c:url value="/" />">View Customer</a>
+								</c:if> --%>
 								
+								<!-- <i class="fa fa-cog fa-spin fa-3x fa-fw" aria-hidden="true"></i>
+								<span class="sr-only">Saving. Hang tight!</span> -->
+								<i class="fa fa-user-admin"></i>
 								<a>Hello, ${pageContext.request.userPrincipal.name}</a>
-								<a href="<c:url value="/j_spring_security_logout"/>">Sign Out</a>
+								<a href="<c:url value="/j_spring_security_logout"/>">
+								<i class="fa fa-sign-out"></i>Sign Out</a>
 							</c:when>						
-							<c:otherwise>					
-							​<a href="index"><i class="fa fa-home"></i>
+							<c:otherwise><a href="index"><i class="fa fa-home"></i> 
 							<span class="hidden-xs text-uppercase">Home</span></a>
 							<a href="loginPage"> <i class="fa fa-sign-in"></i> 
 							<span class="hidden-xs text-uppercase">Sign in</span></a> 
 							<a href="register"><i class="fa fa-user"> </i> 
 							<span class="hidden-xs text-uppercase">Sign up</span></a>
-							</c:otherwise>
-						</c:choose>
+						 </c:otherwise>
+						</c:choose> 
 						</div>
-	
-					</div>
+						</div>
 				</div>
 			</div>
 		</div> <!-- *** TOP END *** -->
@@ -90,10 +81,11 @@ _________________________________________________________ -->
 				<div class="container">
 					<div class="navbar-header">
 
-						<a class="navbar-brand home" href="index.html"> <img
+						<a class="navbar-brand home" href="index"> <img
 							src="<c:url value ="/resources/img/logo.png"/>"
-							alt="Apple eStore logo" class="hidden-xs hidden-sm"> <%--  <img src="<c:url value ="/resources/img/logo-small.png"/>" alt="Apple eStore logo" class="visible-xs visible-sm">
-                               <span class="sr-only">Universal - go to homepage</span>  --%>
+							alt="Apple eStore logo" class="hidden-xs hidden-sm">  
+							<img src="<c:url value ="/resources/img/logo-small.png"/>" alt="Apple eStore logo" class="visible-xs visible-sm">
+                               <span class="sr-only">Universal - go to homepage</span> 
 						</a>
 						<div class="navbar-buttons">
 							<button type="button" class="navbar-toggle btn-template-main"
@@ -138,7 +130,7 @@ _________________________________________________________ -->
 														<li><a href="categories">Category</a></li>
 														<li><a href="suppliers">Supplier</a></li>
 														<li><a href="products">Product</a></li>
-														<!-- <li><a href="aadmin">Admin Page</a></li> -->
+														<li><a href="admin">View Inventory</a></li>
 														<!-- <li><a href="customers">View Customers</a></li> -->
 														
 													</ul>
@@ -161,9 +153,43 @@ _________________________________________________________ -->
 													</c:otherwise>
 											</c:choose>
 											</div>
-											
+												
+												
+												
+												<div class="col-sm-3">
+													<h5>Categories</h5>
+													<ul>
+														<c:if test="${!empty categoryList}">
+														<c:forEach items="${categoryList}" var="category">
+															<li><a href="<c:url value='category/edit/${category.id}' />"> ${category.name} </a>
+																<ul>
+																	<c:if test="${!empty productList}">
+																		<c:forEach items="${productList}" var="product">
+																			<li><a href="<c:url value='product/get/${product.id}' />">${product.name} </a>
+																			</li>	
+																		</c:forEach>
+																	</c:if>
+																</ul>
+															</li>
+														</c:forEach>
+														</c:if>
+													</ul>
+												</div>
 
 												<div class="col-sm-3">
+													<h5>Blog</h5>
+													<ul>
+														<li><a href="blog.html">Blog listing big</a></li>
+														<li><a href="blog-medium.html">Blog listing
+																medium</a></li>
+														<li><a href="blog-small.html">Blog listing small</a></li>
+														<li><a href="blog-post.html">Blog Post</a></li>
+													</ul>
+												</div>
+												
+												
+
+												<!-- <div class="col-sm-3">
 													<h5>Contact</h5>
 													<ul>
 														<li><a href="contact.html">Contact</a></li>
@@ -181,7 +207,7 @@ _________________________________________________________ -->
 														<li><a href="blog-small.html">Blog listing small</a></li>
 														<li><a href="blog-post.html">Blog Post</a></li>
 													</ul>
-												</div>
+												</div> -->
 
 											</div>
 											<!-- /row-content -->
@@ -190,7 +216,7 @@ _________________________________________________________ -->
 								</ul></li>
 							<!-- ========== FULL WIDTH MEGAMENU END ================== -->
 
-							<li class="dropdown"><a href="javascript: void(0)"
+							<!-- <li class="dropdown"><a href="javascript: void(0)"
 								class="dropdown-toggle" data-toggle="dropdown">Contact <b
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
@@ -198,7 +224,7 @@ _________________________________________________________ -->
 									<li><a href="contact2.html">Contact option 2</a></li>
 									<li><a href="contact3.html">Contact option 3</a></li>
 
-								</ul></li>
+								</ul></li> -->
 						</ul>
 
 					</div>
@@ -237,7 +263,5 @@ _________________________________________________________ -->
 	<!-- *** NAVBAR END *** --> 
 
 </header>
-
-
-</body>
 </html>
+

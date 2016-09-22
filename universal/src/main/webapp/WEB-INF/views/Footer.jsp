@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-
-<head>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
 
 
-</head>
-<body>
 	<footer id="footer">
 	<div class="container">
 		<div class="col-md-3 col-sm-6">
@@ -149,6 +145,7 @@
 
 
 		<!-- /.container -->
+		</div>
 	</footer>
 
 	<!-- *** COPYRIGHT ***
@@ -161,7 +158,7 @@ _________________________________________________________ -->
 				<p class="pull-left">&copy; 2016. Apple eStore Ltd. All Rights
 					Reserved.</p>
 		
-				<p class="pull-right">
+		<%-- <p class="pull-right">
 				<a href="http://www.facebook.com" class="external facebook" data-animate-hover="pulse">
 							<i class="fa fa-facebook"></i></a> <a
 								href="<c:url value ="http://www.googleplus.com"/>"
@@ -174,7 +171,7 @@ _________________________________________________________ -->
 							<!-- PUT CODE TO COMPOSE A MAIL REMOVE GMAIL.COM  -->
 							<a href="<c:url value ="http://www.gmail.com"/>" class="email"
 								data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-				</p>
+				</p> --%>
 
 			</div>
 			</div>
@@ -183,9 +180,7 @@ _________________________________________________________ -->
 		<!-- /#copyright -->
 
 	</div>
+	</div>
 	
 	<!-- *** COPYRIGHT END *** -->
-
-
-</body>
-</html>
+	

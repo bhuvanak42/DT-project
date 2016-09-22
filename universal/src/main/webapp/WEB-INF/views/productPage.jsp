@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -106,20 +106,31 @@
 }
 
 .tg .tg-4eph {
-	background-color: #f9f9f9
+	background-color: #f9f9f9;
 }
 
 
-.tgg td {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	padding: 10px 5px;
-	overflow: hidden;
-	word-break: normal;
-	color: #333;
-	border-style:hidden;
-	background-color: #fff;
+.form-group input{
+	width:50%;
 }
+
+.select-style select {
+    width: 50%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+
+#itemimage{
+    width: 50%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+
+}
+
 
 </style>
 </head>
@@ -254,7 +265,7 @@
 
 				<div class="form-group">
 				<label for="supplier">Supplier</label>
-					<div class="controls docs-input-sizes">
+					<div class="select-style">
 					<form:select path="supplier.name" items="${supplierList}"
 						itemValue="name" itemLabel="name" />
 				</div>
@@ -263,7 +274,7 @@
 		
 				<div class="form-group">
 				<label for="category">Category</label>
-				<div class="controls docs-input-sizes">
+				<div class="select-style">
 				<form:select path="category.name" items="${categoryList}"
 						itemValue="name" itemLabel="name" />						
 				</div>
@@ -271,7 +282,7 @@
 			
 			<div class="form-group">
 			<label for="description">Upload image</label>
-							<div class="controls docs-input-sizes">
+				<div class="controls docs-input-sizes">
 				<form:input id="itemimage" path="itemImage" type="file" class="form:input-large" />
 				</div>
 			</div>
@@ -296,98 +307,11 @@
 					</form:form>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	<%-- <form:form action="${addAction}" commandName="product" enctype="multipart/form-data">
-		<table class="tgg" >
-			<tr>
-				<td><form:label path="id">
-						<spring:message text="ID" />
-					</form:label></td>
-				<c:choose>
-					<c:when test="${!empty product.id}">
-						<td><form:input path="id" disabled="true" readonly="true" />
-						</td>
-					</c:when>
-
-					<c:otherwise>
-						<td><form:input path="id" pattern=".{6,7}" required="true"
-								title="id should contains 6 to 7 characters" /></td>
-					</c:otherwise>
-				</c:choose>
-			<tr>
-				<form:input path="id" hidden="true" />
-				<td><form:label path="name">
-						<spring:message text="Name" />
-					</form:label></td>
-				<td><form:input path="name" required="true" /></td>
-			</tr>
-
-
-			<tr>
-				<td><form:label path="price">
-						<spring:message text="Price" />
-					</form:label></td>
-				<td><form:input path="price" required="true" /></td>
-			</tr>
-
-			<tr>
-				<td><form:label path="description">
-						<spring:message text="Description" />
-					</form:label></td>
-				<td><form:input path="description" required="true" /></td>
-			</tr>
-
-			<tr>
-				<td><form:label path="supplier">
-						<spring:message text="Supplier" />
-					</form:label></td>
-				<td><form:select path="supplier.name" items="${supplierList}"
-						itemValue="name" itemLabel="name" />
-				</td>
-			</tr>
-			<tr>
-				<td><form:label path="category">
-						<spring:message text="Category" />
-					</form:label></td>
-				<td><form:select path="category.name" items="${categoryList}"
-						itemValue="name" itemLabel="name" />						
-				</td>
-			</tr>
-			
-			<tr>
-			<td>Upload image</td>
-				<td>
-				<form:input id="itemimage" path="itemImage" type="file" class="form:input-large" /></td>
-				
-			</tr>
-			
-			<tr>
-				<td colspan="2"><c:if test="${!empty product.name}">
-						<input type="submit" value="<spring:message text="Edit Product"/>" />
-					</c:if> <c:if test="${empty product.name}">
-						<input type="submit" value="<spring:message text="Add Product"/>" />
-					</c:if></td>
-			</tr>
-			
-			
-			
-		</table>
-	</form:form> --%>
 	<br>
 
 
 
-	
+	<div class="all">
 	<c:if test="${!empty productList}">
 	<h3>Product List</h3>
 		<table class="tg">
@@ -407,20 +331,21 @@
 					<td>${product.id}</td>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
-					<td>${product.price}</td>
+					<td align=right>Rs.${product.price}</td>
 					<td>${product.category.name}</td>
 					<td>${product.supplier.name}</td>
 					<td><a href="<c:url value='product/edit/${product.id}' />">Edit</a></td>
 					<td><a href="<c:url value='product/remove/${product.id}' />">Delete</a></td>
-					<td><img src="<c:url value="/resources/img/${product.id}.png"/>" height="142" width="142" alt="product image"/>​</td>
-					<td><img src="<c:url value="/resources/img/${product.id}.png"/>" height="142" width="142" alt="product image"/>​</td>
-					<td><a href="<c:url value="/resources/img/${product.id}.png"/>">Click here</a></td>
- <%-- <td><a href="<spring:url value="/product/viewProduct/${product.productId}" />"><span class="glyphicon glyphicon-info-sign"></span></a></td> --%>
+					<%-- <td><img src="<c:url value='/resources/img/${product.id}.png'/>" height="142" width="142" alt="product image"></img></td> --%>
+					
+					<%-- <td><img src='D:/ECLIPSE WORKSPACE/AppleFolder/universal/src/main/webapp/WEB-INF/resources/img/${product.id}.png' height="142" width="142" alt="product image"></img></td> --%>
+					<td><img src="<c:url value="/resources/img/productImages/${product.id}.png"/>" height="142" width="142" alt="product image"></img>​</td>
+					<td><a href="<c:url value="/resources/img/productImages/${product.id}.png"/>">Click here</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
-					
+		</div>			
 						
 					</div>
 			
@@ -481,21 +406,23 @@ _________________________________________________________ -->
 	<!-- #### JAVASCRIPT FILES ### -->
 
 	<script
-		src="<c:url value='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></c:url>"></script>
-	<!--  <script>
-        window.jQuery || document.write("<script src='<c:url value='/resources/js/jquery-1.11.0.min.js'></c:url>'></script>")
-    </script> -->
-	<script
-		src="<c:url value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></c:url>"></script>
-
-	<script src="<c:url value="/resources/js/jquery.cookie.js"></c:url>"></script>
-	<script src="<c:url value="/resources/js/waypoints.min.js"></c:url>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery.counterup.min.js"></c:url>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery.parallax-1.1.3.js"></c:url>"></script>
-	<script src="<c:url value='/resources/js/front.js'></c:url>">
-		
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="/resources/js/jquery-1.11.0.min.js"><\/script>');
 	</script>
+	
+	<script
+		src="<c:url value='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'/>"></script>
+
+	<script src="<c:url value ="/resources/js/jquery.cookie.js"/>"></script>
+	<script src="<c:url value ="/resources/js/waypoints.min.js"/>"></script>
+	<script src="<c:url value ="/resources/js/jquery.counterup.min.js"/>"></script>
+	<script src="<c:url value ="/resources/js/jquery.parallax-1.1.3.js"/>"></script>
+	<script src="<c:url value ="/resources/js/front.js"/>"></script>
+
+	<!-- owl carousel -->
+	<script src="<c:url value ="/resources/js/owl.carousel.min.js"/>"></script>
 </body>
 </html>

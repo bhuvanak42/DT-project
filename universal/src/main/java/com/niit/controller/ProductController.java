@@ -1,7 +1,6 @@
 package com.niit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -9,9 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.niit.shopingcart.dao.CategoryDAO;
 import com.niit.shopingcart.dao.ProductDAO;
@@ -24,8 +22,6 @@ import com.niit.util.Util;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProductController {
@@ -57,12 +53,19 @@ public class ProductController {
 	 * this.productDAO = ps; }
 	 */
 
+	
+	
+	
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String listProducts(Model model) {
+		
+		model.addAttribute("isAdminClickedProducts", "true");
 		model.addAttribute("product", product);
 		model.addAttribute("productList", this.productDAO.list());
 
 		model.addAttribute("Category", category);
+		model.addAttribute("Supplier", supplier);
+		
 		model.addAttribute("supplierList", this.supplierDAO.list());
 		model.addAttribute("categoryList", this.categoryDAO.list());
 
@@ -71,14 +74,12 @@ public class ProductController {
 
 	// For add and update product both
 	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product product, Model model, HttpServletRequest request) {
+	public String addProduct(@ModelAttribute("product") Product product, Model model) {
 
 		Category category = categoryDAO.getByName(product.getCategory().getName());
-		// categoryDAO.saveOrUpdate(category);
 		System.out.println(category.getId() + ":" + category.getName() + ":" + category.getDescription());
 
 		Supplier supplier = supplierDAO.getByName(product.getSupplier().getName());
-		// supplierDAO.saveOrUpdate(supplier);
 		System.out.println(supplier.getId() + ":" + supplier.getName() + ":" + supplier.getAddress());
 
 		model.addAttribute("Supplier", supplier);
@@ -91,21 +92,36 @@ public class ProductController {
 
 		product.setCategory_id(category.getId());
 		product.setSupplier_id(supplier.getId());
+		
 		product.setCategory(category);
 		product.setSupplier(supplier);
 
 		productDAO.saveOrUpdate(product);
 
+		/*path="D:\\product\\image";		
+		FileUtil.upload(path, itemImage, product.getId()+".png");*/
+		
+		
+		
 		MultipartFile itemImage = product.getItemImage();
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\img\\" + product.getId() + ".png");
+		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+//		path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\img\\" + product.getId() + ".png");
+//		System.out.print(path.toString());
+		
+		path = Paths.get("D:\\ECLIPSE WORKSPACE\\AppleFolder\\universal\\src\\main\\webapp\\WEB-INF\\resources\\img\\productImages\\" + product.getId() + ".png");
+		
+		
+		
 		// path = Paths.get("D:/asd"+product.getId()+".jpg");
 		// path = Paths.get(rootDirectory + "/WEB-INF/resources/img/" +product.getProductId() + ".png");
+		// outputStream = new FileOutputStream(new File(filePath));
+		// outputStream.write(form.getFile().getFileItem().get());
+
 
 		if (itemImage != null && !itemImage.isEmpty()) {
 			try {
 				System.out.println("inside try");
-				System.out.print(path.toString());
+				
 				itemImage.transferTo(new File(path.toString()));
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -117,12 +133,12 @@ public class ProductController {
 
 	}
 
-	@RequestMapping("product/remove/{id}")
+	@RequestMapping("/product/remove/{id}")
 	public String removeProduct(@PathVariable("id") String id, ModelMap model) throws Exception {
 
 		try {
 			productDAO.delete(id);
-			model.addAttribute("message", "Successfully Added");
+			model.addAttribute("message", "Successfully deleted");
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
@@ -131,16 +147,45 @@ public class ProductController {
 		return "redirect:/products";
 	}
 
-	@RequestMapping("product/edit/{id}")
+	@RequestMapping("/product/edit/{id}")
 	public String editProduct(@PathVariable("id") String id, Model model) {
 		System.out.println("editProduct");
 		model.addAttribute("Supplier", supplier);
 		model.addAttribute("Category", category);
 		model.addAttribute("supplierList", this.supplierDAO.list());
 		model.addAttribute("categoryList", this.categoryDAO.list());
-
 		model.addAttribute("product", this.productDAO.get(id));
-		model.addAttribute("listProducts", this.productDAO.list());
+		model.addAttribute("productList", this.productDAO.list());
 		return "productPage";
 	}
+	
+	/*@RequestMapping("/product/get/{id}")
+	public String getProduct(@PathVariable("id") String id, Model model) {
+		System.out.println("get Product");
+		model.addAttribute("Supplier", supplier);
+		model.addAttribute("Category", category);
+		model.addAttribute("supplierList", this.supplierDAO.list());
+		model.addAttribute("categoryList", this.categoryDAO.list());
+		product=productDAO.get(id);
+		model.addAttribute("product",product);
+		model.addAttribute("selectedProduct", this.productDAO.getByName(product.getName()));
+		model.addAttribute("productList", this.productDAO.list());
+		//return "/iindex";
+			return "redirect:/";
+	}*/
+	
+	
+	
+	@RequestMapping("product/get/{id}")
+	public String getSelectedProduct(@PathVariable("id") String id, Model model,RedirectAttributes redirectAttributes) {
+		System.out.println("getSelectedProduct");
+		
+		model.addAttribute("productList", this.productDAO.list());
+		
+		 redirectAttributes.addFlashAttribute("selectedProduct", this.productDAO.get(id));
+		
+		 //model.addAttribute("categoryList", this.categoryDAO.list());
+		 return "redirect:/";
+	}
+	
 }
