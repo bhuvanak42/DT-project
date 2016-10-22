@@ -42,34 +42,9 @@ public class CartItemDaoImpl implements CartItemDao {
 		}
 	}
 
-	/*
-	 * public CartItem getCartItemByProductId (String id,int cartId) { Session
-	 * session = sessionFactory.openSession(); Query query =
-	 * session.createQuery("from CartItem where id = ?"); query.setString(0,
-	 * id); session.flush(); return (CartItem) query.uniqueResult();
-	 * 
-	 * String hql = "from CartItem where id='" + id + "' and cartId='"
-	 * +cartId+"'"; Session session = sessionFactory.openSession();
-	 * System.out.println("ooooo"); Query query = session.createQuery(hql);
-	 * System.out.println("pppp");
-	 * 
-	 * @SuppressWarnings("unchecked") List<CartItem> cartItems =
-	 * (List<CartItem>) query.list(); for (CartItem item : cartItems) {
-	 * System.out.println("item value"+item.getCartProductId()); //return item;
-	 * }
-	 * 
-	 * //cartItems.get(0); if (cartItems != null && !cartItems.isEmpty()) {
-	 * System.out.println(cartItems.get(0).getCartProductId()); return
-	 * cartItems.get(0); } return null; }
-	 */
 
 	public CartItem getCartItemByProductId(String id, int cartId) {
-		/*
-		 * Session session = sessionFactory.openSession(); Query query =
-		 * session.createQuery("from CartItem where CARTID = '"+cartId+
-		 * "' and id='"+id+"'"); List<CartItem> cartItems = (List<CartItem>)
-		 * query.list();
-		 */
+		
 
 		List<CartItem> cartItems = getAllCartItems(cartId);
 		if (cartItems != null && !cartItems.isEmpty()) {

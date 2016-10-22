@@ -47,8 +47,6 @@ public class UserRegistrationController {
 		if (result.hasErrors()) {					
 			ModelAndView model=new ModelAndView("customerRegister");
 			model.addObject("message", "You have entered invalid details");
-			
-			System.out.println("Page has errors");
 			return model;
 		}
 		
@@ -71,11 +69,6 @@ public class UserRegistrationController {
                 return model;
             }
         }
-		/*if(usersDetailDAO.isValidUser(usersDetail.getUsername())==false){
-			ModelAndView model=new ModelAndView("customerRegister");
-			model.addObject("usernameError", "User name already exists");
-			return model;
-		}*/
 		usersDetail.setEnabled(true);
 		usersDetailDAO.addUser(usersDetail);
 		ModelAndView model=new ModelAndView("registrationSuccess");

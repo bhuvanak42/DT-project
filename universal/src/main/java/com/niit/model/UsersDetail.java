@@ -1,8 +1,6 @@
 package com.niit.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.niit.model.Cart;
 
 import javax.persistence.*;
@@ -45,7 +43,6 @@ public class UsersDetail implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name = "cartId")
-	@JsonIgnore
 	private Cart cart;
 	 
 	@NotEmpty (message = "Password can not be empty.")

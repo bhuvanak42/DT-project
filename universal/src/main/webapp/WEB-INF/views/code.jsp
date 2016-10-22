@@ -15,17 +15,10 @@
 			</div>
 			<div class="col-sm-5">
 				<h1>${product.name}</h1>
-				<h2>Price:
-					Rs.${product.price} </h2><br>
-					
-				<a href="<c:url value='/product/get/${product.id}'/>"  class="btn btn-template-main"> View details </a><br>
-					
-					
-					<%-- <c:if test="${pageContext.request.userPrincipal.name != 'Admin'}">
-				<br> <a href="<c:url value="/usercart/cart/addItem/${product.id}"/>">Add
-					to Cart</a> <br>
-				<button>Buy</button>
-				</c:if> --%>
+				<h2>Price: Rs.${product.price}</h2>
+				<br> <a href="<c:url value='/productInfo/${product.id}'/>"
+					class="btn btn-template-main"> View details </a><br>
+
 			</div>
 		</div>
 	</div>

@@ -9,29 +9,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContactController {
 
 	@RequestMapping(value = "/contact", method = RequestMethod.POST)
-	public ModelAndView loadContactPage( ){
-		ModelAndView model=new ModelAndView("contact");
-		model.addObject("message","Message sent successfully");
+	public ModelAndView loadContactPage() {
+		ModelAndView model = new ModelAndView("contact");
+		model.addObject("message", "Message sent successfully");
 		return model;
 	}
 
-	@RequestMapping(value="/contact",method = RequestMethod.GET)
-	public String getContactPage(){
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String getContactPage() {
 		return "contact";
 	}
-	
-	
 
-	@RequestMapping(value="/shippingPage",method = RequestMethod.GET)
-	public String getShippingPage(){
+	@RequestMapping(value = "/shippingPage", method = RequestMethod.GET)
+	public String getShippingPage() {
 		return "Shipping";
 	}
-	
-	
+
 	@RequestMapping(value = "/thankYouPage", method = RequestMethod.POST)
-	public ModelAndView loadShippingPage(){
-		ModelAndView model=new ModelAndView("thankYou");
+	public ModelAndView loadShippingPage() {
+		ModelAndView model = new ModelAndView("thankYou");
 		return model;
 	}
-	
 }

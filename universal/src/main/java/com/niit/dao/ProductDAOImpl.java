@@ -16,63 +16,20 @@ import com.niit.model.Product;
 @Transactional
 public class ProductDAOImpl implements ProductDAO {
 
-	//SAVE AND UPDATE METHODS NOT NEEDED...... REMOVE IT
-	
-	
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	/*public ProductDAOImpl( ) {
-			
-	}
-	
-	public ProductDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;		
-	}*/
-
-	@Transactional
-	public boolean save(Product product) {
-		// TODO Auto-generated method stub
-
-		try {
-			
-			Session session = sessionFactory.openSession();
-			
-			session.save(product);
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	}
 
 	@Transactional
 	public boolean saveOrUpdate(Product product) {
 		try {
 
 			Session session = sessionFactory.openSession();
-			session.saveOrUpdate(product); 
+			session.saveOrUpdate(product);
 			session.flush();
-			
+
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	@Transactional
-	public boolean update(Product product) {
-		try {
-			
-			
-			
-			sessionFactory.openSession().update(product);
-			sessionFactory.openSession().flush();
-			return true;
-		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -96,12 +53,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	public Product get(String id) {
-
-
 		String hql = "from Product where id='" + id + "'";
-
 		Query query = sessionFactory.openSession().createQuery(hql);
-
 		@SuppressWarnings("unchecked")
 		List<Product> listProduct = (List<Product>) query.list();
 
@@ -113,8 +66,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	public Product getByName(String name) {
-		
-		String hql = "from Product where name='" + name + "'";	
+
+		String hql = "from Product where name='" + name + "'";
 		Query query = sessionFactory.openSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Product> listProduct = (List<Product>) query.list();
@@ -124,7 +77,7 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return null;
 	}
-	
+
 	@Transactional
 	public List<Product> list() {
 

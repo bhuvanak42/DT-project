@@ -23,9 +23,6 @@ public class CartDaoImpl implements CartDao{
     @Autowired
     private SessionFactory sessionFactory;
 
-   /* @Autowired
-    private OrderService orderService;*/
-
     public Cart getCartById (int cartId) {
         Session session = sessionFactory.openSession();
         

@@ -41,13 +41,12 @@ public class CartManagementController {
 	 }
 	 
 
-	// addItem method is used to add a item in user cart.
+	/* addItem method is used to add a item in user cart.*/
 
 	@RequestMapping(value = "/addItem/{id}", method = RequestMethod.GET)
 	public String addItem(@PathVariable(value = "id") String id, Model model) {
 
 		User activeUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
 		UsersDetail usersDetail = usersDetailDao.getUserByUsername(activeUser.getUsername());
 		Cart cart = usersDetail.getCart();
 
@@ -75,8 +74,6 @@ public class CartManagementController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
 				
 				model.addAttribute("cartId", cart.getCartId());
 				model.addAttribute("successMsg", product.getName() + " added to cart");
@@ -137,10 +134,14 @@ public class CartManagementController {
 		CartItem cartItem = cartItemDao.getCartItemByProductId(id, cartId);
 
 		Product product=productDAO.get(id);
-		if(cartItem.getQuantity()>0){
+		if(cartItem.getQuantity()>1){
 		cartItem.setQuantity(cartItem.getQuantity() - 1);
 		cartItem.setTotalPrice(cartItem.getQuantity()*product.getPrice());
 		cartItemDao.addCartItem(cartItem);
+		}
+		else{
+			
+				cartItemDao.removeCartItem(cartItem);
 		}
 		return "redirect:/user/cart/" + cartId;
 	}

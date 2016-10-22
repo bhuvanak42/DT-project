@@ -30,7 +30,7 @@ public class Product implements Serializable{
 	@Column(unique = true, nullable=false)
 	private String name;
 	private String description;
-//	@NotEmpty(message = "Product price can not be empty.")
+	@NotEmpty(message = "Product price can not be empty.")
 	private int price;
 	
 	private String category_id;

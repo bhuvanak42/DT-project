@@ -22,7 +22,6 @@ public class CartItem implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "cartId")
-   // @JsonIgnore
     private Cart cart;
 
     @ManyToOne

@@ -60,29 +60,22 @@
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/admin/**"
-			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/categories/**"
-			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/category/**"
 			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/products/**"
-			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/product/add/**"
-			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/product/remove/**"
-			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/product/edit/**"
+		<security:intercept-url pattern="/product/**"
 			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/supplier/**"
 			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/suppliers/**"
-			access="ROLE_ADMIN" />
+
 		<security:intercept-url pattern="/user/**"
 			access="ROLE_USER" />
 		<security:intercept-url pattern="/usercart/**"
 			access="ROLE_USER" />
 		<security:intercept-url pattern="/user/cart/**"
+			access="ROLE_USER" />
+		<security:intercept-url pattern="/shippingPage/**"
+			access="ROLE_USER" />
+		<security:intercept-url pattern="/thankYouPage/**"
 			access="ROLE_USER" />
 
 		<security:form-login login-page="/login"

@@ -39,17 +39,10 @@ public class ProductController {
 
 	private Path path;
 
-	/*
-	 * @Autowired(required=true)
-	 * 
-	 * @Qualifier(value="productDAO") public void setProductDAO(ProductDAO ps){
-	 * this.productDAO = ps; }
-	 */
-
-	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public String listProducts(Model model) {
-		System.out.println("Hello.. I'm inside /products list");
-		model.addAttribute("isAdminClickedProducts", "true");
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public String listProduct(Model model) {
+		System.out.println("Hello.. I'm inside /product list");
+		model.addAttribute("isAdminClickedProduct", "true");
 		model.addAttribute("product", new Product());
 		model.addAttribute("productList", this.productDAO.list());
 
@@ -67,10 +60,7 @@ public class ProductController {
 	public String addProduct(@ModelAttribute("product") Product product, Model model) {
 
 		Category category = categoryDAO.getByName(product.getCategory().getName());
-		System.out.println(category.getId() + ":" + category.getName() + ":" + category.getDescription());
-
 		Supplier supplier = supplierDAO.getByName(product.getSupplier().getName());
-		System.out.println(supplier.getId() + ":" + supplier.getName() + ":" + supplier.getAddress());
 
 		model.addAttribute("Supplier", supplier);
 		model.addAttribute("Category", category);
@@ -88,11 +78,6 @@ public class ProductController {
 
 		productDAO.saveOrUpdate(product);
 
-		/*
-		 * path="D:\\product\\image"; FileUtil.upload(path, itemImage,
-		 * product.getId()+".png");
-		 */
-
 		MultipartFile itemImage = product.getItemImage();
 		path = Paths
 				.get("D:\\BACK UP\\DONOT DELETE\\universal\\src\\main\\webapp\\WEB-INF\\resources\\img\\productImages\\"
@@ -100,7 +85,6 @@ public class ProductController {
 
 		if (itemImage != null && !itemImage.isEmpty()) {
 			try {
-				System.out.println("inside try");
 				itemImage.transferTo(new File(path.toString()));
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -108,17 +92,16 @@ public class ProductController {
 			}
 		}
 
-		return "redirect:/products";
+		return "redirect:/product";
 
 	}
 
 	@RequestMapping("/product/remove/{id}")
 	public String removeProduct(@PathVariable("id") String id, ModelMap model) throws Exception {
-		System.out.println("Hello.. I'm inside /products remove");
+
 		try {
 			productDAO.delete(id);
 			model.addAttribute("message", "Successfully deleted");
-
 			path = Paths
 					.get("D:\\BACK UP\\DONOT DELETE\\universal\\src\\main\\webapp\\WEB-INF\\resources\\img\\productImages\\"
 							+ id + ".png");
@@ -126,9 +109,8 @@ public class ProductController {
 			if (Files.exists(path)) {
 				try {
 					Files.delete(path);
-					System.out.println("Image successfully deleted");
+
 				} catch (IOException e) {
-					System.out.println("Error in Image deletion");
 					e.printStackTrace();
 				}
 			}
@@ -137,49 +119,25 @@ public class ProductController {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
 		}
-
-		// redirectAttrs.addFlashAttribute(arg0, arg1)
-		return "redirect:/products";
+		return "redirect:/product";
 	}
 
 	@RequestMapping("/product/edit/{id}")
 	public String editProduct(@PathVariable("id") String id, Model model) {
-		model.addAttribute("isAdminClickedEditProducts", "true");
-		System.out.println("Hello.. I'm inside /products edit");
+		model.addAttribute("isAdminClickedEditProduct", "true");
 		model.addAttribute("Category", new Category());
 		model.addAttribute("Supplier", new Supplier());
 		model.addAttribute("supplierList", this.supplierDAO.list());
 		model.addAttribute("categoryList", this.categoryDAO.list());
 		model.addAttribute("product", this.productDAO.get(id));
-		// model.addAttribute("productList", this.productDAO.list());
 		return "Admin";
 	}
 
-	/*
-	 * @RequestMapping("/product/get/{id}") public String
-	 * getProduct(@PathVariable("id") String id, Model model) {
-	 * System.out.println("get Product"); model.addAttribute("Supplier",
-	 * supplier); model.addAttribute("Category", category);
-	 * model.addAttribute("supplierList", this.supplierDAO.list());
-	 * model.addAttribute("categoryList", this.categoryDAO.list());
-	 * product=productDAO.get(id); model.addAttribute("product",product);
-	 * model.addAttribute("selectedProduct",
-	 * this.productDAO.getByName(product.getName()));
-	 * model.addAttribute("productList", this.productDAO.list()); //return
-	 * "/iindex"; return "redirect:/"; }
-	 */
-
-	@RequestMapping("product/get/{id}")
+	@RequestMapping("productInfo/{id}")
 	public String getSelectedProduct(@PathVariable("id") String id, Model model,
 			RedirectAttributes redirectAttributes) {
-		System.out.println("getSelectedProduct");
-
 		model.addAttribute("productList", this.productDAO.list());
-
-		// redirectAttributes.addFlashAttribute("selectedProduct",
-		// this.productDAO.get(id));
 		model.addAttribute("selectedProduct", this.productDAO.get(id));
-		// model.addAttribute("categoryList", this.categoryDAO.list());
 		return "productInfo";
 	}
 

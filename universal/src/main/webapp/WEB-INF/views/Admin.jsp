@@ -75,15 +75,15 @@
 						<ul class="breadcrumb">
 							<li><a href="<c:url value="/"/>">Admin</a></li>
 							<c:if
-								test="${isAdminClickedCategories==true||isAdminClickedEditCategories==true }">
+								test="${isAdminClickedCategory==true||isAdminClickedEditCategory==true }">
 								<li>Category</li>
 							</c:if>
 							<c:if
-								test="${isAdminClickedSuppliers==true||isAdminClickedEditSuppliers==true }">
+								test="${isAdminClickedSupplier==true||isAdminClickedEditSupplier==true }">
 								<li>Supplier</li>
 							</c:if>
 							<c:if
-								test="${isAdminClickedProducts==true||isAdminClickedEditProducts==true }">
+								test="${isAdminClickedProduct==true||isAdminClickedEditProduct==true }">
 								<li>Product</li>
 							</c:if>
 						</ul>
@@ -95,17 +95,17 @@
 		<section>
 
 			<c:if
-				test="${isAdminClickedCategories==true||isAdminClickedEditCategories==true }">
+				test="${isAdminClickedCategory==true||isAdminClickedEditCategory==true }">
 				<%@include file="category.jsp"%>
 			</c:if>
 
 			<c:if
-				test="${isAdminClickedProducts==true||isAdminClickedEditProducts==true }">
+				test="${isAdminClickedProduct==true||isAdminClickedEditProduct==true }">
 				<%@include file="product.jsp"%>
 			</c:if>
 
 			<c:if
-				test="${isAdminClickedSuppliers==true ||isAdminClickedEditSuppliers==true}">
+				test="${isAdminClickedSupplier==true ||isAdminClickedEditSupplier==true}">
 				<%@include file="supplier.jsp"%>
 			</c:if>
 		</section>
@@ -118,11 +118,6 @@
 	</div>
 	<!-- /#all -->
 
-	
-
-	
-
-<%-- <%@include file="/WEB-INF/views/gmap.jsp"%> --%>
 
 	<!-- #### JAVASCRIPT FILES ### -->
 	<%@include file="/WEB-INF/views/scriptfiles.jsp"%>

@@ -5,17 +5,16 @@ import java.util.List;
 import com.niit.model.Cart;
 import com.niit.model.CartItem;
 
-
 public interface CartItemDao {
 
-    void addCartItem(CartItem cartItem);
+	void addCartItem(CartItem cartItem);
 
-    void removeCartItem(CartItem cartItem);
+	void removeCartItem(CartItem cartItem);
 
-    void removeAllCartItems(Cart cart);
+	void removeAllCartItems(Cart cart);
 
-    CartItem getCartItemByProductId (String id,int cartId);
-    
-   List<CartItem> getAllCartItems(int cartId);
+	CartItem getCartItemByProductId(String id, int cartId);
+
+	List<CartItem> getAllCartItems(int cartId);
 
 }

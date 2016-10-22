@@ -30,14 +30,8 @@ public class UserCartController {
      
     @RequestMapping
     public String getCartItems(){
-    	//@AuthenticationPrincipal User activeUser
     	User activeUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //String name = activeUser.getUsername(); //get logged in username
-    	
     	UsersDetail usersDetail = usersDetailDao.getUserByUsername (activeUser.getUsername());
-    	System.out.println(activeUser.getUsername());
-      // System.out.println("inside /user/cart ");
-    	
     	int cartId = usersDetail.getCart().getCartId();
         return "redirect:/user/cart/"+cartId;
     }
@@ -47,13 +41,6 @@ public class UserCartController {
     public String getNewUrl(@PathVariable (value = "cartId") int cartId, Model model) {
         model.addAttribute("cartId", cartId);
         model.addAttribute("cartList", cartItemDao.getAllCartItems(cartId));
-        //model.addAttribute("cartId", cartId);
         return "myCart";
     }
-    
-    /*@RequestMapping("/cart1")
-    public String getcart() {
-        
-        return "cart";
-    }*/
 }
